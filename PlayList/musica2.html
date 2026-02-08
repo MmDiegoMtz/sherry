@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="css.css">
+    <title>Sherlyn</title>
+  </head>
+  <body>
+    <nav>
+      <h1>Sherlyn 💖</h1>
+      <ul>
+        <li><a href="../music.html"><img src="../img/Retriceso.png" width="60">ㅤ</a></li>
+      </ul>
+    </nav>
+    <div class="contenedor3">
+        
+        
+        
+        <div class="parte">
+                <br><br>
+                <div class="contenedor4">
+                  <img src="../img/Mike Lesirge - La Vie En Rose.jpg" width="250"><br>
+                  <h2>La Vie En Rose</h2><br>
+                  <h3>Mike Lesirge</h3>
+                  <div class="music">
+                    <audio id="audio1" controls onended="playNext()">
+                      <source src="Mike Lesirge - La Vie En Rose.mp3" type="audio/mpeg">
+                      Tu navegador no soporta el elemento de audio.
+                    </audio>
+                  </div>
+                </div>
+              </div>
+
+              <div class="parte">
+                <br><br>
+                <div class="contenedor4">
+                  <img src="../img/reik2.jpg" width="250"><br>
+                  <h2>Inolvidable</h2><br>
+                  <h3>Reik</h3>
+                  <div class="music">
+                    <audio id="audio1" controls onended="playNext()">
+                      <source src="Reik - Inolvidable.mp3" type="audio/mpeg">
+                      Tu navegador no soporta el elemento de audio.
+                    </audio>
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="parte">
+                <br><br>
+                <div class="contenedor4">
+                  <img src="../img/Duki - Buscarte Lejos.jpg" width="250"><br>
+                  <h2>Buscarte Lejos</h2><br>
+                  <h3>Duki</h3>
+                  <div class="music">
+                    <audio id="audio1" controls onended="playNext()">
+                      <source src="Duki - Buscarte Lejos.mp3" type="audio/mpeg">
+                      Tu navegador no soporta el elemento de audio.
+                    </audio>
+                  </div>
+                </div>
+              </div>
+              <div class="parte">
+                <br><br>
+                <div class="contenedor4">
+                  <img src="../img/infante.jpg" width="250"><br>
+                  <h2>Cien años</h2><br>
+                  <h3>Pedro Infante</h3>
+                  <div class="music">
+                    <audio id="audio1" controls onended="playNext()">
+                      <source src="Pedro Infante - Cien años.mp3" type="audio/mpeg">
+                      Tu navegador no soporta el elemento de audio.
+                    </audio>
+                  </div>
+                </div>
+              </div>
+        <div class="parte">
+                <br><br>
+                <div class="contenedor4">
+                  <img src="../img/Avenged Sevenfold - Warmness On The Soul.jpg" width="250"><br>
+                  <h2>Warmness On The Soul</h2><br>
+                  <h3>Avenged Sevenfold</h3>
+                  <div class="music">
+                    <audio id="audio1" controls onended="playNext()">
+                      <source src="Avenged Sevenfold - Warmness On The Soul.mp3" type="audio/mpeg">
+                      Tu navegador no soporta el elemento de audio.
+                    </audio>
+                  </div>
+                </div>
+              </div>
+
+              <div class="parte">
+                <br><br>
+                <div class="contenedor4">
+                  <img src="../img/camila.jpg" width="250"><br>
+                  <h2>Todo Cambió</h2><br>
+                  <h3>Camila</h3>
+                  <div class="music">
+                    <audio id="audio1" controls onended="playNext()">
+                      <source src="Camila - Todo Cambió.mp3" type="audio/mpeg">
+                      Tu navegador no soporta el elemento de audio.
+                    </audio>
+                  </div>
+                </div>
+              </div>
+        
+        <div class="parte">
+                <br><br>
+                <div class="contenedor4">
+                  <img src="../img/Bon Jovi - Bed Of Roses.jpg" width="250"><br>
+                  <h2>Bed Of Roses</h2><br>
+                  <h3>Bon Jovi</h3>
+                  <div class="music">
+                    <audio id="audio1" controls onended="playNext()">
+                      <source src="Bon Jovi - Bed Of Roses.mp3" type="audio/mpeg">
+                      Tu navegador no soporta el elemento de audio.
+                    </audio>
+                  </div>
+                </div>
+              </div>
+        
+        <div class="parte">
+                <br><br>
+                <div class="contenedor4">
+                  <img src="../img/Lisa Ono - Besame Mucho.jpg" width="250"><br>
+                  <h2>Besame Mucho</h2><br>
+                  <h3>Lisa Ono</h3>
+                  <div class="music">
+                    <audio id="audio1" controls onended="playNext()">
+                      <source src="Lisa Ono - Besame Mucho.mp3" type="audio/mpeg">
+                      Tu navegador no soporta el elemento de audio.
+                    </audio>
+                  </div>
+                </div>
+              </div>
+        
+    </div>
+
+    <footer>
+      <a href="#"><img src="../img/cinnamoroll-sanrio-characters.gif" width="160"></a>
+      <p><br><br><br>Para mi personita, que más especial, te amo <br><br><br></p>
+    </footer>
+
+    <script>
+      // Obtener todos los elementos de audio
+      const audios = document.querySelectorAll('audio');
+      let currentAudioIndex = 0;
+
+      function playNext() {
+        // Detener la canción actual
+        audios[currentAudioIndex].pause();
+
+        // Incrementar el índice para reproducir la próxima canción
+        currentAudioIndex++;
+
+        // Verificar si hay más canciones disponibles
+        if (currentAudioIndex < audios.length) {
+          // Reproducir la próxima canción
+          audios[currentAudioIndex].play();
+        } else {
+          // Si no hay más canciones, volver al inicio
+          currentAudioIndex = 0;
+          audios[currentAudioIndex].play();
+        }
+      }
+
+      // Agregar un evento 'play' a cada elemento de audio
+      audios.forEach(audio => {
+        audio.addEventListener('play', function() {
+          // Detener todos los elementos de audio excepto el que se está reproduciendo actualmente
+          audios.forEach(a => {
+            if (a !== this) {
+              a.pause();
+            }
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Botón de Corazón</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      font-family: 'Georgia', serif;
+      background: linear-gradient(135deg, #fce4ec 0%, #f8bbd0 50%, #f48fb1 100%);
+      overflow: hidden;
+    }
+
+    /* Centra todo en pantalla */
+    .center-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      padding: 20px;
+    }
+
+    /* Estilo del botón */
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      border-radius: 50%;
+      padding: 0.125em;
+      background-image: linear-gradient(to bottom, #d5d5d5, #e8e8e8);
+      box-shadow: 0 1px 1px rgb(255 255 255 / 0.6);
+      font-size: 1.5em;
+      user-select: none;
+      transition: transform 0.3s ease;
+    }
+
+    .container:hover {
+      cursor: pointer;
+      transform: scale(1.05);
+    }
+
+    .container:active {
+      transform: scale(0.98);
+    }
+
+    .inner-ring {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      border-radius: 50%;
+      width: 3em;
+      height: 3em;
+      background-color: #e8e8e8;
+      box-shadow:
+        inset 0 0 0.0625em 0.125em rgb(255 255 255 / 0.2),
+        inset 0 0.0625em 0.125em rgb(0 0 0 / 0.4);
+    }
+
+    .button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+      width: 3.5rem;
+      height: 3.5rem;
+      background-color: #e8e8e8;
+      box-shadow:
+        inset 0 -0.0625em 0.0625em 0.125em rgb(0 0 0 / 0.1),
+        inset 0 -0.125em 0.0625em rgb(0 0 0 / 0.2),
+        inset 0 0.1875em 0.0625em rgb(255 255 255 / 0.3),
+        0 0.125em 0.125em rgb(0 0 0 / 0.5);
+      transition: 200ms ease-out;
+    }
+
+    .button:active {
+      transform: translate(-50%, -50%) scale(0.95);
+    }
+
+    .heart {
+      transition: all 0.3s ease;
+    }
+
+    .button:hover .heart {
+      transform: scale(1.1);
+      filter: drop-shadow(0 0 8px rgba(240, 73, 73, 0.6));
+    }
+
+    /* Mensaje */
+    .mensaje {
+      position: fixed;
+      font-size: 1.2rem;
+      background-color: rgba(255, 255, 255, 0.95);
+      color: #e84343;
+      padding: 1rem 1.5rem;
+      border-radius: 1rem;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      animation: aparecer 0.5s ease-out forwards;
+      z-index: 1000;
+      pointer-events: none;
+      font-weight: 500;
+      border: 2px solid rgba(232, 67, 67, 0.3);
+      max-width: 90vw;
+      text-align: center;
+    }
+
+    @keyframes aparecer {
+      0% {
+        opacity: 0;
+        transform: scale(0.8);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .fade-out {
+      animation: desaparecer 2s forwards ease-in;
+    }
+
+    @keyframes desaparecer {
+      to {
+        opacity: 0;
+        transform: translateY(-40px) scale(0.9);
+      }
+    }
+
+    /* Corazones flotantes decorativos */
+    .corazon-flotante {
+      position: fixed;
+      font-size: 24px;
+      opacity: 0;
+      pointer-events: none;
+      animation: flotar 3s ease-out forwards;
+      z-index: 999;
+    }
+
+    @keyframes flotar {
+      0% {
+        opacity: 0;
+        transform: translateY(0) scale(0);
+      }
+      20% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0;
+        transform: translateY(-200px) scale(1.5) rotate(20deg);
+      }
+    }
+
+    /* Responsive para tablets */
+    @media (max-width: 768px) {
+      .container {
+        font-size: 1.3em;
+      }
+
+      .button {
+        width: 3.2rem;
+        height: 3.2rem;
+      }
+
+      .heart {
+        width: 32px;
+        height: 32px;
+      }
+
+      .mensaje {
+        font-size: 1.1rem;
+        padding: 0.9rem 1.3rem;
+        max-width: 90vw;
+        white-space: normal;
+        text-align: center;
+      }
+    }
+
+    /* Responsive para móviles */
+    @media (max-width: 480px) {
+      .container {
+        font-size: 1.1em;
+      }
+
+      .button {
+        width: 2.8rem;
+        height: 2.8rem;
+      }
+
+      .heart {
+        width: 26px;
+        height: 26px;
+      }
+
+      .mensaje {
+        font-size: 1rem;
+        padding: 0.8rem 1.2rem;
+        max-width: 85vw;
+        white-space: normal;
+        text-align: center;
+        line-height: 1.4;
+      }
+    }
+
+    /* Responsive para móviles muy pequeños */
+    @media (max-width: 360px) {
+      .container {
+        font-size: 1em;
+      }
+
+      .button {
+        width: 2.5rem;
+        height: 2.5rem;
+      }
+
+      .heart {
+        width: 22px;
+        height: 22px;
+      }
+
+      .mensaje {
+        font-size: 0.9rem;
+        padding: 0.7rem 1rem;
+        max-width: 80vw;
+      }
+    }
+
+    /* Optimización para touch en móviles */
+    @media (hover: none) and (pointer: coarse) {
+      .container:hover {
+        transform: none;
+      }
+
+      .container:active {
+        transform: scale(0.95);
+      }
+
+      .button:hover .heart {
+        transform: none;
+        filter: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="center-wrapper">
+    <div class="container" id="heartButton">
+      <div class="inner-ring">
+        <div class="button">
+          <svg
+            style="fill: rgba(240, 73, 73, 1)"
+            viewBox="0 0 24 24"
+            height="36"
+            width="36"
+            class="heart"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M20.205 4.791a5.938 5.938 0 0 0-4.209-1.754A5.906 5.906 0 0 0 12 4.595a5.904 5.904 0 0 0-3.996-1.558 5.942 5.942 0 0 0-4.213 1.758c-2.353 2.363-2.352 6.059.002 8.412L12 21.414l8.207-8.207c2.354-2.353 2.355-6.049-.002-8.416z"
+            ></path>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const heartButton = document.getElementById('heartButton');
+    const mensajes = [
+      "Te amo ❤️",
+      "Eres mi todo 💕",
+      "Mi vida contigo es perfecta 💖",
+      "Cada día te amo más 💗",
+      "Eres mi felicidad 💝",
+      "Mi amor eterno 💘",
+      "Gracias por existir 💞",
+      "Eres mi sol ☀️",
+      "Mi amor hermoso 🌹",
+      "Por siempre juntos 💑",
+      "Eres mi sueño hecho realidad ✨",
+      "Contigo todo es mejor 🥰",
+      "Mi corazón es tuyo 💓",
+      "Eres mi persona favorita 😍",
+      "Te necesito siempre 💌",
+      "Eres mi hogar 🏠",
+      "Mi razón de sonreír 😊",
+      "Juntos somos infinito ∞",
+      "Eres mi universo 🌟",
+      "Te amo más que ayer 💫",
+      "Eres mi inspiración 🎨",
+      "Mi tesoro más preciado 💎",
+      "Eres mi luz 🌠",
+      "Contigo quiero envejecer 👴👵",
+      "Mi alma gemela 👫",
+      "Eres mi todo y más 🌈",
+      "Te amo infinitamente ♾️",
+      "Eres mi regalo perfecto 🎁",
+      "Mi vida eres tú 🌺",
+      "Eres mi mayor bendición 🙏",
+      "Te elegiría mil veces más 💯",
+      "Eres mi paz interior 🕊️",
+      "Mi corazón late por ti 💓",
+      "Eres mi mejor decisión 🎯",
+      "Te amo con todo mi ser 🫀",
+      "Eres mi aventura favorita 🗺️",
+      "Mi amor verdadero 💝",
+      "Eres mi refugio seguro 🛡️",
+      "Te amo más cada segundo ⏰",
+      "Eres mi felicidad diaria ☀️",
+      "Mi mundo gira contigo 🌍",
+      "Eres mi estrella guía ⭐",
+      "Te amo sin condiciones 💖",
+      "Eres mi complemento perfecto 🧩",
+      "Mi amor incondicional 💗",
+      "Eres mi motivación 💪",
+      "Te amo más que a nada 🌸",
+      "Eres mi sueño cumplido 🌙",
+      "Mi corazón te pertenece 💕",
+      "Eres mi todo en uno 🎁",
+      "Te amo por siempre jamás ⏳",
+      "Eres mi paraíso 🏝️",
+      "Mi amor sin fin 🔄",
+      "Eres mi milagro 🌟",
+      "Te amo hasta el infinito 🚀",
+      "Eres mi razón de vivir 🌻",
+      "Mi corazón es solo tuyo 💘",
+      "Eres mi destino 🧭",
+      "Te amo más allá de todo 🌌",
+      "Eres mi final feliz 📖",
+      "Mi amor eterno eres tú ⌛",
+      "Eres mi mayor fortuna 🍀",
+      "Te amo con locura 🎢",
+      "Eres mi única verdad 💯",
+      "Mi vida tiene sentido contigo 🎯",
+      "Eres mi canción favorita 🎵",
+      "Te amo profundamente 🌊",
+      "Eres mi aire 💨",
+      "Mi corazón te llama 📞",
+      "Eres mi poema favorito 📝",
+      "Te amo incondicionalmente 💞",
+      "Eres mi obra maestra 🖼️",
+      "Mi amor gigante 🦕",
+      "Eres mi forever 💍",
+      "Te amo hasta la luna 🌙",
+      "Eres mi magia 🪄",
+      "Mi corazón sonríe por ti 😊",
+      "Eres mi energía positiva ⚡",
+      "Te amo más que palabras 📚",
+      "Eres mi calma en la tormenta 🌪️",
+      "Mi amor sincero 🤍",
+      "Eres mi historia favorita 📚",
+      "Te amo sin límites 🌅",
+      "Eres mi vitamina diaria 💊",
+      "Mi corazón baila contigo 💃",
+      "Eres mi mejor capítulo 📖",
+      "Te amo sin medida 📏",
+      "Eres mi dulce adicción 🍭",
+      "Mi amor puro 🤍",
+      "Eres mi mejor versión 🦋",
+      "Te amo más que todo 🌎",
+      "Eres mi oxígeno 💨",
+      "Mi corazón te necesita 🫀",
+      "Eres mi princesa 👑",
+      "Te amo hasta el cielo 🌌",
+      "Eres mi tesoro escondido 🗺️",
+      "Mi amor verdadero y único 💖",
+      "Eres mi razón de ser 🌟",
+      "Te amo más de lo imaginable 💭"
+    ];
+
+    let ultimoMensaje = -1;
+
+    function obtenerPosicionSegura(elemento) {
+      const rect = elemento.getBoundingClientRect();
+      const ancho = rect.width;
+      const alto = rect.height;
+      
+      // Márgenes de seguridad
+      const margenHorizontal = 20;
+      const margenVertical = 20;
+      
+      // Calcular límites seguros
+      const maxX = window.innerWidth - ancho - margenHorizontal;
+      const maxY = window.innerHeight - alto - margenVertical;
+      
+      // Generar posición aleatoria dentro de los límites
+      const x = Math.random() * (maxX - margenHorizontal) + margenHorizontal;
+      const y = Math.random() * (maxY - margenVertical) + margenVertical;
+      
+      return { x, y };
+    }
+
+    heartButton.addEventListener('click', function(e) {
+      // Mensaje aleatorio sin repetir el anterior
+      let indice;
+      do {
+        indice = Math.floor(Math.random() * mensajes.length);
+      } while (indice === ultimoMensaje);
+      ultimoMensaje = indice;
+
+      const mensaje = document.createElement('div');
+      mensaje.className = 'mensaje';
+      mensaje.textContent = mensajes[indice];
+      mensaje.style.whiteSpace = 'nowrap'; // Temporalmente para medir
+      document.body.appendChild(mensaje);
+
+      // Obtener posición segura después de que el elemento esté en el DOM
+      setTimeout(() => {
+        const pos = obtenerPosicionSegura(mensaje);
+        mensaje.style.left = pos.x + 'px';
+        mensaje.style.top = pos.y + 'px';
+        mensaje.style.transform = 'none'; // Remover el transform inicial
+      }, 0);
+
+      // Crear corazones flotantes
+      for (let i = 0; i < 3; i++) {
+        setTimeout(() => {
+          const corazon = document.createElement('div');
+          corazon.className = 'corazon-flotante';
+          corazon.textContent = ['❤️', '💕', '💖', '💗', '💝', '💘'][Math.floor(Math.random() * 6)];
+          
+          const rect = heartButton.getBoundingClientRect();
+          corazon.style.left = (rect.left + rect.width / 2 + (Math.random() - 0.5) * 100) + 'px';
+          corazon.style.top = (rect.top + rect.height / 2) + 'px';
+          
+          document.body.appendChild(corazon);
+
+          setTimeout(() => corazon.remove(), 3000);
+        }, i * 200);
+      }
+
+      // Remover el mensaje después de 2.5 segundos
+      setTimeout(() => {
+        mensaje.classList.add('fade-out');
+        setTimeout(() => mensaje.remove(), 2000);
+      }, 2500);
+
+      // Efecto de vibración en móviles
+      if (navigator.vibrate) {
+        navigator.vibrate(50);
+      }
+    });
+
+    // Prevenir zoom en doble tap en iOS
+    let lastTouchEnd = 0;
+    document.addEventListener('touchend', function(event) {
+      const now = Date.now();
+      if (now - lastTouchEnd <= 300) {
+        event.preventDefault();
+      }
+      lastTouchEnd = now;
+    }, false);
+  </script>
+</body>
+</html>

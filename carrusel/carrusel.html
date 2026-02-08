@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuestros Momentos 💖</title>
+    <link rel="stylesheet" href="css.css">
+</head>
+<body>
+    <nav>
+        <h1>Nuestros Momentos 💖</h1>
+        <ul>
+            <li><a href="../index.html"><img src="../img/Retriceso.png" width="60">ㅤ</a></li>
+        </ul>
+    </nav>
+
+    <div class="carousel-container">
+        <div class="carousel-wrapper">
+            <!-- El carrusel se generará dinámicamente con JavaScript -->
+            <div class="carousel">
+                <img src="fotos/foto-1.jpg" alt="Momento especial" class="carousel-image active">
+            </div>
+
+            <!-- Controles del carrusel -->
+            <button class="carousel-btn prev" id="prevBtn">
+                <span>❮</span>
+            </button>
+            <button class="carousel-btn next" id="nextBtn">
+                <span>❯</span>
+            </button>
+
+            <!-- Indicadores de posición -->
+            <div class="carousel-indicators" id="indicators"></div>
+
+            <!-- Contador de fotos -->
+            <div class="photo-counter">
+                <span id="currentPhoto">1</span> / <span id="totalPhotos">44</span>
+            </div>
+        </div>
+
+        <!-- Mensaje romántico -->
+        <div class="love-message">
+            <p>Cada foto es un recuerdo, cada momento contigo es especial 💕</p>
+        </div>
+    </div>
+
+    <footer>
+        <a href="#"><img src="../img/cinnamoroll-sanrio-characters.gif" width="160"></a>
+        <p><br><br><br>Para mi personita, que más especial, te amo <br><br><br></p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Árbol de Navidad para mi Amor</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(to bottom, #0a1628 0%, #1a2845 50%, #0f1b33 100%);
+            overflow: hidden;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Georgia', serif;
+            position: relative;
+        }
+
+        /* Estrellas de fondo parpadeantes */
+        .estrellas-fondo {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 0;
+        }
+
+        .estrella-fondo {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+            box-shadow: 0 0 3px white;
+            animation: titilar 4s ease-in-out infinite;
+        }
+
+        @keyframes titilar {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        /* Luna en el fondo */
+        .luna {
+            position: fixed;
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle at 30% 30%, #fffacd, #f0e68c);
+            border-radius: 50%;
+            top: 8%;
+            right: 10%;
+            box-shadow: 
+                0 0 40px rgba(255, 250, 205, 0.6),
+                0 0 80px rgba(255, 250, 205, 0.3);
+            z-index: 0;
+            opacity: 0.8;
+        }
+
+        .arbol-container {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            animation: aparecerSuave 2s ease-out;
+        }
+
+        @keyframes aparecerSuave {
+            from {
+                opacity: 0;
+                transform: translateY(30px) scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .arbol {
+            position: relative;
+            width: 320px;
+            height: 420px;
+            margin: auto;
+            filter: drop-shadow(0 15px 40px rgba(11, 102, 35, 0.4));
+        }
+
+        /* Estrella superior mejorada */
+        .estrella {
+            color: #ffd700;
+            font-size: 70px;
+            position: absolute;
+            top: -45px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-shadow: 
+                0 0 25px #ffd700,
+                0 0 50px #ffd700,
+                0 0 75px #ff8c00,
+                0 0 100px #ff6b00;
+            animation: brilloEstrella 2.5s ease-in-out infinite;
+            z-index: 10;
+            filter: drop-shadow(0 0 15px #ffd700);
+        }
+
+        @keyframes brilloEstrella {
+            0%, 100% { 
+                transform: translateX(-50%) scale(1) rotate(0deg);
+                filter: drop-shadow(0 0 15px #ffd700) brightness(1);
+            }
+            50% { 
+                transform: translateX(-50%) scale(1.2) rotate(180deg);
+                filter: drop-shadow(0 0 25px #ffd700) brightness(1.3);
+            }
+        }
+
+        /* Capas del árbol con mejor sombreado */
+        .capa {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.3));
+        }
+
+        .capa1 {
+            width: 90px;
+            height: 55px;
+            background: linear-gradient(135deg, #1a8f3f 0%, #0f7a2f 50%, #0a5a20 100%);
+            top: 20px;
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+            border-radius: 12px 12px 40% 40%;
+        }
+
+        .capa2 {
+            width: 135px;
+            height: 65px;
+            background: linear-gradient(135deg, #1e9f45 0%, #13873a 50%, #0e6b2b 100%);
+            top: 60px;
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+            border-radius: 16px 16px 45% 45%;
+        }
+
+        .capa3 {
+            width: 180px;
+            height: 75px;
+            background: linear-gradient(135deg, #22af4b 0%, #17973f 50%, #127c30 100%);
+            top: 105px;
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+            border-radius: 20px 20px 50% 50%;
+        }
+
+        .capa4 {
+            width: 220px;
+            height: 85px;
+            background: linear-gradient(135deg, #26bf51 0%, #1ba744 50%, #168d35 100%);
+            top: 155px;
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+            border-radius: 24px 24px 50% 50%;
+        }
+
+        .capa5 {
+            width: 260px;
+            height: 95px;
+            background: linear-gradient(135deg, #2acf57 0%, #1fb749 50%, #1a9e3a 100%);
+            top: 210px;
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+            border-radius: 28px 28px 50% 50%;
+        }
+
+        .capa6 {
+            width: 300px;
+            height: 105px;
+            background: linear-gradient(135deg, #2edf5d 0%, #23c74f 50%, #1eaf40 100%);
+            top: 275px;
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+            border-radius: 32px 32px 50% 50%;
+        }
+
+        /* Brillos en las capas */
+        .capa::before {
+            content: '';
+            position: absolute;
+            top: 10%;
+            left: 30%;
+            width: 40%;
+            height: 30%;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.3), transparent);
+            border-radius: 50%;
+            filter: blur(8px);
+        }
+
+        /* Sombras en las capas */
+        .capa::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 25%;
+            background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.35));
+            border-radius: inherit;
+        }
+
+        /* Tronco más realista */
+        .tronco {
+            position: absolute;
+            width: 65px;
+            height: 75px;
+            background: linear-gradient(to right, 
+                #3d2110 0%, 
+                #5a3420 20%, 
+                #6b3e26 40%, 
+                #8b5a3c 50%, 
+                #6b3e26 60%, 
+                #5a3420 80%, 
+                #3d2110 100%);
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 10px 10px 18px 18px;
+            box-shadow: 
+                inset -6px 0 12px rgba(0, 0, 0, 0.4),
+                inset 6px 0 12px rgba(139, 90, 60, 0.3),
+                0 8px 25px rgba(0, 0, 0, 0.6);
+        }
+
+        /* Textura de corteza mejorada */
+        .tronco::before {
+            content: '';
+            position: absolute;
+            top: 20%;
+            left: 15%;
+            width: 70%;
+            height: 4px;
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 50%;
+            box-shadow: 0 25px 0 rgba(0, 0, 0, 0.3);
+        }
+
+        .tronco::after {
+            content: '';
+            position: absolute;
+            top: 60%;
+            left: 20%;
+            width: 60%;
+            height: 4px;
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 50%;
+        }
+
+        /* Luces del árbol más brillantes y realistas */
+        .luz {
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            animation: parpadeoLuz 2s ease-in-out infinite;
+            z-index: 5;
+        }
+
+        .luz::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: inherit;
+            filter: blur(1px);
+        }
+
+        .luz::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: white;
+            box-shadow: 0 0 8px white;
+        }
+
+        .luz:nth-child(odd) {
+            animation-delay: 1s;
+        }
+
+        @keyframes parpadeoLuz {
+            0%, 100% { 
+                opacity: 1;
+                transform: scale(1);
+                box-shadow: 
+                    0 0 15px currentColor,
+                    0 0 30px currentColor,
+                    0 0 45px currentColor;
+            }
+            50% { 
+                opacity: 0.5;
+                transform: scale(0.9);
+                box-shadow: 
+                    0 0 8px currentColor,
+                    0 0 15px currentColor;
+            }
+        }
+
+        /* Posiciones de luces más naturales */
+        .luz1 { background: #ff4444; top: 45px; left: 135px; }
+        .luz2 { background: #44ff44; top: 45px; right: 135px; }
+        .luz3 { background: #ffff44; top: 85px; left: 105px; }
+        .luz4 { background: #ff44ff; top: 85px; right: 105px; }
+        .luz5 { background: #44ffff; top: 130px; left: 75px; }
+        .luz6 { background: #ff8844; top: 130px; right: 75px; }
+        .luz7 { background: #ff44aa; top: 180px; left: 50px; }
+        .luz8 { background: #44ffaa; top: 180px; right: 50px; }
+        .luz9 { background: #aa44ff; top: 235px; left: 30px; }
+        .luz10 { background: #ffaa44; top: 235px; right: 30px; }
+        .luz11 { background: #4488ff; top: 295px; left: 20px; }
+        .luz12 { background: #ff4466; top: 295px; right: 20px; }
+        .luz13 { background: #88ff44; top: 250px; left: 95px; }
+        .luz14 { background: #ffff88; top: 250px; right: 95px; }
+        .luz15 { background: #ff88ff; top: 150px; left: 115px; }
+        .luz16 { background: #88ffff; top: 150px; right: 115px; }
+
+        /* Bolas navideñas mejoradas */
+        .bola {
+            position: absolute;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            z-index: 5;
+            box-shadow: 
+                inset -4px -4px 10px rgba(0, 0, 0, 0.4),
+                inset 4px 4px 10px rgba(255, 255, 255, 0.5),
+                0 5px 15px rgba(0, 0, 0, 0.4);
+            animation: balanceo 3.5s ease-in-out infinite;
+        }
+
+        .bola::before {
+            content: '';
+            position: absolute;
+            top: 15%;
+            left: 20%;
+            width: 40%;
+            height: 40%;
+            background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.8), transparent);
+            border-radius: 50%;
+        }
+
+        @keyframes balanceo {
+            0%, 100% { transform: rotate(-6deg); }
+            50% { transform: rotate(6deg); }
+        }
+
+        .bola1 { background: linear-gradient(135deg, #ff1a1a, #cc0000, #990000); top: 70px; left: 120px; animation-delay: 0s; }
+        .bola2 { background: linear-gradient(135deg, #ffd700, #ffaa00, #cc8800); top: 70px; right: 120px; animation-delay: 0.6s; }
+        .bola3 { background: linear-gradient(135deg, #1a8fff, #0066cc, #004499); top: 145px; left: 85px; animation-delay: 1.2s; }
+        .bola4 { background: linear-gradient(135deg, #ff1aff, #cc00cc, #990099); top: 145px; right: 85px; animation-delay: 1.8s; }
+        .bola5 { background: linear-gradient(135deg, #1aff99, #00cc66, #009944); top: 220px; left: 55px; animation-delay: 2.4s; }
+        .bola6 { background: linear-gradient(135deg, #ff8800, #cc5500, #993300); top: 220px; right: 55px; animation-delay: 3s; }
+        .bola7 { background: linear-gradient(135deg, #ff4488, #cc0055, #990033); top: 110px; left: 150px; animation-delay: 0.3s; }
+        .bola8 { background: linear-gradient(135deg, #88ff44, #55cc00, #339900); top: 185px; right: 85px; animation-delay: 2.1s; }
+
+        /* Guirnalda brillante */
+        .guirnalda {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
+
+        .destello {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: white;
+            border-radius: 50%;
+            box-shadow: 0 0 10px white;
+            animation: destellar 3s ease-in-out infinite;
+        }
+
+        @keyframes destellar {
+            0%, 100% { opacity: 0; transform: scale(0); }
+            50% { opacity: 1; transform: scale(2); }
+        }
+
+        /* Mensaje romántico mejorado */
+        .mensaje-container {
+            margin-top: 40px;
+            position: relative;
+        }
+
+        .mensaje {
+            color: #fff;
+            font-size: 36px;
+            font-family: 'Georgia', serif;
+            text-shadow: 
+                0 0 15px rgba(255, 100, 150, 0.8),
+                0 0 30px rgba(255, 50, 100, 0.5),
+                3px 3px 8px rgba(0, 0, 0, 0.8);
+            animation: latidoMensaje 2.5s ease-in-out infinite;
+            font-style: italic;
+            letter-spacing: 3px;
+            background: linear-gradient(135deg, #fff, #ffccdd);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
+        }
+
+        @keyframes latidoMensaje {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.08); }
+        }
+
+        .submensaje {
+            color: #ffccdd;
+            font-size: 18px;
+            margin-top: 15px;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+            opacity: 0;
+            animation: aparecerTexto 3s ease-out 1s forwards;
+            letter-spacing: 2px;
+        }
+
+        @keyframes aparecerTexto {
+            to { opacity: 1; }
+        }
+
+        /* Corazones flotantes mejorados */
+        .corazones {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
+
+        .corazon {
+            position: absolute;
+            font-size: 28px;
+            animation: flotarCorazon 5s ease-in-out infinite;
+            opacity: 0;
+            filter: drop-shadow(0 0 8px currentColor);
+        }
+
+        .corazon:nth-child(1) { left: -60px; top: 100px; animation-delay: 0s; color: #ff0066; }
+        .corazon:nth-child(2) { right: -60px; top: 150px; animation-delay: 1.2s; color: #ff3399; }
+        .corazon:nth-child(3) { left: -50px; top: 220px; animation-delay: 2.4s; color: #ff66cc; }
+        .corazon:nth-child(4) { right: -50px; top: 280px; animation-delay: 3.6s; color: #ff0099; }
+        .corazon:nth-child(5) { left: -55px; top: 340px; animation-delay: 4.8s; color: #ff99dd; }
+
+        @keyframes flotarCorazon {
+            0% {
+                transform: translateY(0) translateX(0) scale(0) rotate(0deg);
+                opacity: 0;
+            }
+            15% { opacity: 0.9; }
+            85% { opacity: 0.8; }
+            100% {
+                transform: translateY(-140px) translateX(40px) scale(1.8) rotate(20deg);
+                opacity: 0;
+            }
+        }
+
+        /* Nieve mejorada */
+        .nieve {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .copo {
+            position: absolute;
+            top: -20px;
+            color: white;
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+            animation: caerNieve linear infinite;
+            opacity: 0.9;
+        }
+
+        @keyframes caerNieve {
+            0% {
+                transform: translateY(0) translateX(0) rotate(0deg);
+            }
+            100% {
+                transform: translateY(100vh) translateX(50px) rotate(360deg);
+            }
+        }
+
+        /* Brillo ambiental del árbol */
+        .arbol::before {
+            content: '';
+            position: absolute;
+            top: -10%;
+            left: -10%;
+            right: -10%;
+            bottom: -10%;
+            background: radial-gradient(circle at 50% 40%, 
+                rgba(46, 223, 93, 0.2) 0%, 
+                rgba(35, 199, 79, 0.1) 40%, 
+                transparent 70%);
+            pointer-events: none;
+            z-index: -1;
+            animation: pulsarBrillo 4s ease-in-out infinite;
+        }
+
+        @keyframes pulsarBrillo {
+            0%, 100% { opacity: 0.6; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.05); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .arbol {
+                width: 280px;
+                height: 370px;
+            }
+
+            .estrella {
+                font-size: 55px;
+                top: -35px;
+            }
+
+            /* Ajustar capas para tablet */
+            .capa1 { width: 75px; height: 48px; top: 18px; }
+            .capa2 { width: 115px; height: 57px; top: 52px; }
+            .capa3 { width: 150px; height: 65px; top: 92px; }
+            .capa4 { width: 185px; height: 73px; top: 137px; }
+            .capa5 { width: 220px; height: 82px; top: 186px; }
+            .capa6 { width: 250px; height: 90px; top: 242px; }
+
+            .tronco {
+                width: 55px;
+                height: 65px;
+            }
+
+            .mensaje {
+                font-size: 28px;
+                letter-spacing: 2px;
+            }
+
+            .submensaje {
+                font-size: 15px;
+            }
+
+            .luna {
+                width: 70px;
+                height: 70px;
+            }
+
+            /* Ajustar posiciones de luces */
+            .luz1 { top: 40px; left: 118px; }
+            .luz2 { top: 40px; right: 118px; }
+            .luz3 { top: 75px; left: 92px; }
+            .luz4 { top: 75px; right: 92px; }
+            .luz5 { top: 115px; left: 65px; }
+            .luz6 { top: 115px; right: 65px; }
+            .luz7 { top: 160px; left: 43px; }
+            .luz8 { top: 160px; right: 43px; }
+            .luz9 { top: 208px; left: 25px; }
+            .luz10 { top: 208px; right: 25px; }
+            .luz11 { top: 262px; left: 17px; }
+            .luz12 { top: 262px; right: 17px; }
+            .luz13 { top: 220px; left: 82px; }
+            .luz14 { top: 220px; right: 82px; }
+            .luz15 { top: 132px; left: 100px; }
+            .luz16 { top: 132px; right: 100px; }
+
+            /* Ajustar bolas */
+            .bola1 { top: 62px; left: 105px; }
+            .bola2 { top: 62px; right: 105px; }
+            .bola3 { top: 128px; left: 74px; }
+            .bola4 { top: 128px; right: 74px; }
+            .bola5 { top: 195px; left: 48px; }
+            .bola6 { top: 195px; right: 48px; }
+            .bola7 { top: 97px; left: 130px; }
+            .bola8 { top: 163px; right: 74px; }
+        }
+
+        @media (max-width: 480px) {
+            .arbol {
+                width: 240px;
+                height: 320px;
+            }
+
+            .estrella {
+                font-size: 45px;
+                top: -30px;
+            }
+
+            /* Ajustar capas para móvil */
+            .capa1 { width: 65px; height: 42px; top: 16px; }
+            .capa2 { width: 98px; height: 50px; top: 45px; }
+            .capa3 { width: 128px; height: 57px; top: 80px; }
+            .capa4 { width: 158px; height: 65px; top: 120px; }
+            .capa5 { width: 188px; height: 72px; top: 162px; }
+            .capa6 { width: 215px; height: 80px; top: 212px; }
+
+            .tronco {
+                width: 48px;
+                height: 58px;
+            }
+
+            .mensaje {
+                font-size: 24px;
+                letter-spacing: 1px;
+            }
+
+            .submensaje {
+                font-size: 14px;
+            }
+
+            .luz {
+                width: 12px;
+                height: 12px;
+            }
+
+            .bola {
+                width: 16px;
+                height: 16px;
+            }
+
+            /* Ajustar posiciones de luces para móvil */
+            .luz1 { top: 35px; left: 100px; }
+            .luz2 { top: 35px; right: 100px; }
+            .luz3 { top: 65px; left: 78px; }
+            .luz4 { top: 65px; right: 78px; }
+            .luz5 { top: 100px; left: 55px; }
+            .luz6 { top: 100px; right: 55px; }
+            .luz7 { top: 140px; left: 37px; }
+            .luz8 { top: 140px; right: 37px; }
+            .luz9 { top: 180px; left: 22px; }
+            .luz10 { top: 180px; right: 22px; }
+            .luz11 { top: 227px; left: 15px; }
+            .luz12 { top: 227px; right: 15px; }
+            .luz13 { top: 190px; left: 70px; }
+            .luz14 { top: 190px; right: 70px; }
+            .luz15 { top: 115px; left: 85px; }
+            .luz16 { top: 115px; right: 85px; }
+
+            /* Ajustar bolas para móvil */
+            .bola1 { top: 55px; left: 90px; }
+            .bola2 { top: 55px; right: 90px; }
+            .bola3 { top: 112px; left: 63px; }
+            .bola4 { top: 112px; right: 63px; }
+            .bola5 { top: 170px; left: 42px; }
+            .bola6 { top: 170px; right: 42px; }
+            .bola7 { top: 84px; left: 112px; }
+            .bola8 { top: 142px; right: 63px; }
+
+            /* Ajustar corazones */
+            .corazon:nth-child(1) { left: -45px; top: 80px; }
+            .corazon:nth-child(2) { right: -45px; top: 120px; }
+            .corazon:nth-child(3) { left: -40px; top: 180px; }
+            .corazon:nth-child(4) { right: -40px; top: 230px; }
+            .corazon:nth-child(5) { left: -42px; top: 280px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Estrellas de fondo -->
+    <div class="estrellas-fondo" id="estrellas-fondo"></div>
+
+    <!-- Luna -->
+    <div class="luna"></div>
+
+    <!-- Árbol de Navidad -->
+    <div class="arbol-container">
+        <div class="arbol">
+            <div class="estrella">★</div>
+            
+            <!-- Guirnalda de destellos -->
+            <div class="guirnalda" id="guirnalda"></div>
+            
+            <!-- Capas del árbol -->
+            <div class="capa capa1"></div>
+            <div class="capa capa2"></div>
+            <div class="capa capa3"></div>
+            <div class="capa capa4"></div>
+            <div class="capa capa5"></div>
+            <div class="capa capa6"></div>
+            
+            <!-- Luces decorativas -->
+            <div class="luz luz1"></div>
+            <div class="luz luz2"></div>
+            <div class="luz luz3"></div>
+            <div class="luz luz4"></div>
+            <div class="luz luz5"></div>
+            <div class="luz luz6"></div>
+            <div class="luz luz7"></div>
+            <div class="luz luz8"></div>
+            <div class="luz luz9"></div>
+            <div class="luz luz10"></div>
+            <div class="luz luz11"></div>
+            <div class="luz luz12"></div>
+            <div class="luz luz13"></div>
+            <div class="luz luz14"></div>
+            <div class="luz luz15"></div>
+            <div class="luz luz16"></div>
+            
+            <!-- Bolas decorativas -->
+            <div class="bola bola1"></div>
+            <div class="bola bola2"></div>
+            <div class="bola bola3"></div>
+            <div class="bola bola4"></div>
+            <div class="bola bola5"></div>
+            <div class="bola bola6"></div>
+            <div class="bola bola7"></div>
+            <div class="bola bola8"></div>
+            
+            <!-- Corazones flotantes -->
+            <div class="corazones">
+                <div class="corazon">❤️</div>
+                <div class="corazon">💕</div>
+                <div class="corazon">💖</div>
+                <div class="corazon">❤️</div>
+                <div class="corazon">💗</div>
+            </div>
+            
+            <div class="tronco"></div>
+        </div>
+        
+        <div class="mensaje-container">
+            <div class="mensaje">Para ti, mi amor ❤️</div>
+            <div class="submensaje">Que esta Navidad brille tanto como tú ✨</div>
+        </div>
+    </div>
+
+    <!-- Nieve cayendo -->
+    <div class="nieve" id="nieve"></div>
+
+    <script>
+        // Generar estrellas de fondo
+        const estrellasFondo = document.getElementById('estrellas-fondo');
+        for (let i = 0; i < 100; i++) {
+            const estrella = document.createElement('div');
+            estrella.className = 'estrella-fondo';
+            estrella.style.left = Math.random() * 100 + '%';
+            estrella.style.top = Math.random() * 100 + '%';
+            estrella.style.animationDelay = Math.random() * 4 + 's';
+            estrella.style.animationDuration = (Math.random() * 3 + 2) + 's';
+            estrellasFondo.appendChild(estrella);
+        }
+
+        // Generar destellos en la guirnalda
+        const guirnalda = document.getElementById('guirnalda');
+        const posicionesDestellos = [
+            {top: 60, left: 140}, {top: 60, right: 140},
+            {top: 100, left: 110}, {top: 100, right: 110},
+            {top: 150, left: 80}, {top: 150, right: 80},
+            {top: 200, left: 55}, {top: 200, right: 55},
+            {top: 260, left: 30}, {top: 260, right: 30}
+        ];
+
+        posicionesDestellos.forEach((pos, index) => {
+            const destello = document.createElement('div');
+            destello.className = 'destello';
+            if (pos.left !== undefined) destello.style.left = pos.left + 'px';
+            if (pos.right !== undefined) destello.style.right = pos.right + 'px';
+            destello.style.top = pos.top + 'px';
+            destello.style.animationDelay = (index * 0.3) + 's';
+            guirnalda.appendChild(destello);
+        });
+
+        // Generar copos de nieve
+        const nieveContainer = document.getElementById('nieve');
+        for (let i = 0; i < 60; i++) {
+            const copo = document.createElement('div');
+            copo.className = 'copo';
+            copo.textContent = '❄';
+            copo.style.left = Math.random() * 100 + '%';
+            copo.style.animationDuration = (Math.random() * 4 + 3) + 's';
+            copo.style.animationDelay = Math.random() * 6 + 's';
+            copo.style.fontSize = (Math.random() * 12 + 10) + 'px';
+            copo.style.opacity = Math.random() * 0.5 + 0.5;
+            nieveContainer.appendChild(copo);
+        }
+    </script>
+</body>
+</html>

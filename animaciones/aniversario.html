@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuestro Primer Año Juntos 💕</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            min-height: 100vh;
+            font-family: 'Georgia', serif;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Estrellas brillantes de fondo */
+        .estrella {
+            position: fixed;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+            animation: titilar 3s ease-in-out infinite;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+        }
+
+        @keyframes titilar {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.5); }
+        }
+
+        /* Contenedor principal */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Encabezado mágico */
+        .header {
+            text-align: center;
+            margin-bottom: 60px;
+            animation: fadeInDown 1.5s ease-out;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header h1 {
+            font-size: 64px;
+            background: linear-gradient(135deg, #ff6b9d, #ffc371, #ff6b9d);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradienteTexto 4s ease infinite;
+            margin-bottom: 20px;
+            font-weight: bold;
+            text-shadow: 0 0 30px rgba(255, 107, 157, 0.5);
+        }
+
+        @keyframes gradienteTexto {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .header p {
+            font-size: 28px;
+            color: #ffc371;
+            font-style: italic;
+            text-shadow: 0 0 20px rgba(255, 195, 113, 0.5);
+        }
+
+        /* Timeline interactiva */
+        .timeline {
+            position: relative;
+            padding: 40px 0;
+            margin: 60px auto;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, #ff6b9d, #ffc371, #ff6b9d);
+            box-shadow: 0 0 20px rgba(255, 107, 157, 0.6);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin: 80px 0;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out forwards;
+        }
+
+        .timeline-item:nth-child(1) { animation-delay: 0.5s; }
+        .timeline-item:nth-child(2) { animation-delay: 1s; }
+        .timeline-item:nth-child(3) { animation-delay: 1.5s; }
+        .timeline-item:nth-child(4) { animation-delay: 2s; }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .timeline-item.left .timeline-content {
+            margin-right: 55%;
+            text-align: right;
+        }
+
+        .timeline-item.right .timeline-content {
+            margin-left: 55%;
+            text-align: left;
+        }
+
+        .timeline-content {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 20px;
+            border: 2px solid rgba(255, 107, 157, 0.3);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .timeline-content:hover {
+            transform: scale(1.05);
+            border-color: rgba(255, 107, 157, 0.6);
+            box-shadow: 0 20px 50px rgba(255, 107, 157, 0.4);
+        }
+
+        .timeline-content h3 {
+            font-size: 28px;
+            color: #ff6b9d;
+            margin-bottom: 15px;
+            text-shadow: 0 0 10px rgba(255, 107, 157, 0.5);
+        }
+
+        .timeline-content p {
+            font-size: 18px;
+            color: #ffc371;
+            line-height: 1.8;
+        }
+
+        .timeline-icon {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #ff6b9d, #ffc371);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            box-shadow: 0 0 30px rgba(255, 107, 157, 0.6);
+            animation: pulsar 2s ease-in-out infinite;
+            z-index: 2;
+        }
+
+        @keyframes pulsar {
+            0%, 100% { transform: translateX(-50%) scale(1); }
+            50% { transform: translateX(-50%) scale(1.2); }
+        }
+
+        /* Contador de días */
+        .contador {
+            text-align: center;
+            margin: 80px auto;
+            padding: 50px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            border-radius: 30px;
+            border: 3px solid rgba(255, 107, 157, 0.4);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+            max-width: 600px;
+        }
+
+        .contador h2 {
+            font-size: 36px;
+            color: #ff6b9d;
+            margin-bottom: 30px;
+            text-shadow: 0 0 20px rgba(255, 107, 157, 0.5);
+        }
+
+        .dias-numero {
+            font-size: 72px;
+            font-weight: bold;
+            background: linear-gradient(135deg, #ff6b9d, #ffc371);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px rgba(255, 107, 157, 0.5);
+            animation: contarDias 2s ease-out;
+        }
+
+        @keyframes contarDias {
+            from { transform: scale(0); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .contador p {
+            font-size: 24px;
+            color: #ffc371;
+            margin-top: 20px;
+            font-style: italic;
+        }
+
+        /* Galería de momentos */
+        .galeria {
+            margin: 80px auto;
+            text-align: center;
+        }
+
+        .galeria h2 {
+            font-size: 42px;
+            color: #ff6b9d;
+            margin-bottom: 40px;
+            text-shadow: 0 0 20px rgba(255, 107, 157, 0.5);
+        }
+
+        .galeria-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            padding: 20px;
+        }
+
+        .momento-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            border: 2px solid rgba(255, 107, 157, 0.3);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            animation: fadeIn 1s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .momento-card:hover {
+            transform: translateY(-10px) rotate(2deg);
+            border-color: rgba(255, 107, 157, 0.6);
+            box-shadow: 0 20px 40px rgba(255, 107, 157, 0.4);
+        }
+
+        .momento-emoji {
+            font-size: 48px;
+            margin-bottom: 15px;
+            display: block;
+            animation: flotar 3s ease-in-out infinite;
+        }
+
+        @keyframes flotar {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .momento-card h3 {
+            font-size: 22px;
+            color: #ffc371;
+            margin-bottom: 10px;
+        }
+
+        .momento-card p {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+        }
+
+        /* Mensaje final romántico */
+        .mensaje-final {
+            text-align: center;
+            margin: 80px auto;
+            padding: 60px 40px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            border-radius: 30px;
+            border: 3px solid rgba(255, 107, 157, 0.4);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+            max-width: 800px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mensaje-final::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 107, 157, 0.1), transparent);
+            animation: brilloMensaje 3s linear infinite;
+        }
+
+        @keyframes brilloMensaje {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .mensaje-final h2 {
+            font-size: 48px;
+            color: #ff6b9d;
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 1;
+            text-shadow: 0 0 20px rgba(255, 107, 157, 0.5);
+        }
+
+        .mensaje-final p {
+            font-size: 22px;
+            color: #ffc371;
+            line-height: 2;
+            font-style: italic;
+            position: relative;
+            z-index: 1;
+            margin: 20px 0;
+        }
+
+        /* Corazones flotantes */
+        .corazon-flotante {
+            position: fixed;
+            font-size: 30px;
+            animation: flotarCorazon 15s ease-in-out infinite;
+            opacity: 0;
+            z-index: 0;
+            filter: drop-shadow(0 0 10px currentColor);
+        }
+
+        @keyframes flotarCorazon {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.8;
+            }
+            90% {
+                opacity: 0.6;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Botón interactivo */
+        .boton-especial {
+            display: inline-block;
+            margin-top: 40px;
+            padding: 20px 50px;
+            font-size: 24px;
+            background: linear-gradient(135deg, #ff6b9d, #ffc371);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(255, 107, 157, 0.5);
+            transition: all 0.3s ease;
+            font-family: 'Georgia', serif;
+            font-weight: bold;
+            position: relative;
+            z-index: 1;
+            text-decoration: none;
+        }
+
+        .boton-especial:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(255, 107, 157, 0.7);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 38px;
+            }
+
+            .header p {
+                font-size: 20px;
+            }
+
+            .timeline::before {
+                left: 30px;
+            }
+
+            .timeline-item.left .timeline-content,
+            .timeline-item.right .timeline-content {
+                margin-left: 80px;
+                margin-right: 0;
+                text-align: left;
+            }
+
+            .timeline-icon {
+                left: 30px;
+            }
+
+            .timeline-content h3 {
+                font-size: 22px;
+            }
+
+            .timeline-content p {
+                font-size: 16px;
+            }
+
+            .contador {
+                padding: 30px 20px;
+            }
+
+            .contador h2 {
+                font-size: 28px;
+            }
+
+            .dias-numero {
+                font-size: 52px;
+            }
+
+            .contador p {
+                font-size: 18px;
+            }
+
+            .galeria h2 {
+                font-size: 32px;
+            }
+
+            .galeria-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .mensaje-final {
+                padding: 40px 25px;
+            }
+
+            .mensaje-final h2 {
+                font-size: 32px;
+            }
+
+            .mensaje-final p {
+                font-size: 18px;
+                line-height: 1.8;
+            }
+
+            .boton-especial {
+                padding: 16px 40px;
+                font-size: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 28px;
+            }
+
+            .header p {
+                font-size: 18px;
+            }
+
+            .timeline-content {
+                padding: 20px;
+            }
+
+            .dias-numero {
+                font-size: 42px;
+            }
+
+            .mensaje-final h2 {
+                font-size: 26px;
+            }
+
+            .mensaje-final p {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Estrellas de fondo -->
+    <div id="estrellas"></div>
+
+    <!-- Corazones flotantes -->
+    <div id="corazones"></div>
+
+    <div class="container">
+        <!-- Encabezado -->
+        <div class="header">
+            <h1>365 Días de Amor 💕</h1>
+            <p>Nuestro Primer Año Juntos</p>
+        </div>
+
+        <!-- Contador de días -->
+        <div class="contador">
+            <h2>Llevamos juntos...</h2>
+            <div class="dias-numero" id="dias">365</div>
+            <p>días inolvidables ✨</p>
+        </div>
+
+        <!-- Timeline de momentos -->
+        <div class="timeline">
+            <div class="timeline-item left">
+                <div class="timeline-icon">💫</div>
+                <div class="timeline-content">
+                    <h3>El Reencuentro</h3>
+                    <p>Ese momento donde decidimos darnos otra oportunidad. Nos volvimos a encontrar para resolver lo importante, y terminó siendo el inicio de algo aún más hermoso.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item right">
+                <div class="timeline-icon">💋</div>
+                <div class="timeline-content">
+                    <h3>Todos Aquellos Besos</h3>
+                    <p>Cada beso que compartimos es especial. Desde el primero hasta el último de hoy, todos llevan un pedacito de nuestro amor.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item left">
+                <div class="timeline-icon">🌟</div>
+                <div class="timeline-content">
+                    <h3>Un Año Completo</h3>
+                    <p>365 días oficiales de amor, pero con una historia que comenzó mucho antes. Este año ha sido la confirmación de que lo nuestro vale cada esfuerzo.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Galería de momentos -->
+        <div class="galeria">
+            <h2>Nuestros Momentos Favoritos 💫</h2>
+            <div class="galeria-grid">
+                <div class="momento-card">
+                    <span class="momento-emoji">😂</span>
+                    <h3>Risas Infinitas</h3>
+                    <p>Cada día contigo es una nueva razón para sonreír</p>
+                </div>
+                <div class="momento-card">
+                    <span class="momento-emoji">🎵</span>
+                    <h3>Valentine</h3>
+                    <p>Últimamente encontré una canción que me gusta, pienso en ti: "Valentine" de Laufey</p>
+                </div>
+                <div class="momento-card">
+                    <span class="momento-emoji">🍕</span>
+                    <h3>Comidas Especiales</h3>
+                    <p>Cada comida juntos es un festín de amor y complicidad</p>
+                </div>
+                <div class="momento-card">
+                    <span class="momento-emoji">🌺</span>
+                    <h3>Detalles Sorpresa</h3>
+                    <p>Cada gesto inesperado que hace latir más fuerte mi corazón</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mensaje final -->
+        <div class="mensaje-final">
+            <h2>Te Amo Más Cada Día 💖</h2>
+            <p>Este año juntos ha sido el mejor capítulo de nuestra historia.</p>
+            <p>A pesar de todo, elegimos estar juntos, y eso nos ha hecho más fuertes.</p>
+            <p>Eres mi novia, mi cómplice, mi amor.</p>
+            <p>Gracias por cada sonrisa, cada abrazo, cada momento compartido.</p>
+            <p><strong>Aquí está a muchos años más juntos ✨</strong></p>
+            <button class="boton-especial" onclick="mostrarSorpresa()">💕 Click Aquí 💕</button>
+        </div>
+    </div>
+
+    <script>
+        // Generar estrellas
+        const estrellasContainer = document.getElementById('estrellas');
+        for (let i = 0; i < 150; i++) {
+            const estrella = document.createElement('div');
+            estrella.className = 'estrella';
+            estrella.style.left = Math.random() * 100 + '%';
+            estrella.style.top = Math.random() * 100 + '%';
+            estrella.style.animationDelay = Math.random() * 3 + 's';
+            estrella.style.animationDuration = (Math.random() * 2 + 2) + 's';
+            estrellasContainer.appendChild(estrella);
+        }
+
+        // Generar corazones flotantes
+        const corazonesContainer = document.getElementById('corazones');
+        const corazones = ['💕', '💖', '💗', '💝', '💘', '❤️', '🌹', '✨'];
+        
+        for (let i = 0; i < 25; i++) {
+            const corazon = document.createElement('div');
+            corazon.className = 'corazon-flotante';
+            corazon.textContent = corazones[Math.floor(Math.random() * corazones.length)];
+            corazon.style.left = Math.random() * 100 + '%';
+            corazon.style.animationDelay = Math.random() * 15 + 's';
+            corazon.style.animationDuration = (Math.random() * 5 + 10) + 's';
+            corazonesContainer.appendChild(corazon);
+        }
+
+        // Animación del contador
+        function animarContador() {
+            const diasElemento = document.getElementById('dias');
+            let contador = 0;
+            const intervalo = setInterval(() => {
+                contador += 5;
+                diasElemento.textContent = contador;
+                if (contador >= 365) {
+                    diasElemento.textContent = '365';
+                    clearInterval(intervalo);
+                }
+            }, 20);
+        }
+
+        // Iniciar animación cuando se carga la página
+        window.addEventListener('load', () => {
+            setTimeout(animarContador, 500);
+        });
+
+        // Función sorpresa
+        function mostrarSorpresa() {
+            const mensajes = [
+                '¡Te amo con todo mi corazón! 💕',
+                '',
+                'Gracias por este año maravilloso.',
+                'Gracias por elegirme una y otra vez.',
+                'Eres la mejor decisión que he tomado.',
+                '',
+                'Aquí está a muchos años más de amor,',
+                'risas y felicidad juntos.',
+                '',
+                '¡Te amo hoy, mañana y siempre! ✨💖'
+            ];
+            alert(mensajes.join('\n'));
+        }
+    </script>
+</body>
+</html>

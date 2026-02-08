@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="css.css">
+    <title>Sherlyn</title>
+  </head>
+  <body>
+    <nav>
+      <h1>Sherlyn 💖</h1>
+      <ul>
+        <li><a href="../music.html"><img src="../img/Retriceso.png" width="60">ㅤ</a></li>
+      </ul>
+    </nav>
+    <div class="contenedor3">
+      <div class="parte">
+        <br><br>
+        <div class="contenedor4">
+          <img src="../img/brunoM.jpg" width="250"><br>
+          <h2>Just the Way You Are</h2><br>
+          <h3>Bruno Mars</h3>
+          <div class="music">
+            <audio id="audio1" controls onended="playNext()">
+              <source src="Bruno Mars - Just the Way You Are.mp3" type="audio/mpeg">
+              Tu navegador no soporta el elemento de audio.
+            </audio>
+          </div>
+        </div>
+      </div>
+      
+      <div class="parte">
+        <br><br>
+        <div class="contenedor4">
+          <img src="../img/cafe.jpg" width="250"><br>
+          <h2>Eres</h2><br>
+          <h3>Café Tacvba</h3>
+          <div class="music">
+            <audio id="audio1" controls onended="playNext()">
+              <source src="Café Tacvba - Eres.mp3" type="audio/mpeg">
+              Tu navegador no soporta el elemento de audio.
+            </audio>
+          </div>
+        </div>
+      </div>
+      
+      <div class="parte">
+        <br><br>
+        <div class="contenedor4">
+          <img src="../img/carlos.jpg" width="250"><br>
+          <h2>La Bicicleta</h2><br>
+          <h3>Carlos Vives, Shakira</h3>
+          <div class="music">
+            <audio id="audio1" controls onended="playNext()">
+              <source src="Carlos Vives - La Bicicleta.mp3" type="audio/mpeg">
+              Tu navegador no soporta el elemento de audio.
+            </audio>
+          </div>
+        </div>
+      </div>
+      
+      <div class="parte">
+        <br><br>
+        <div class="contenedor4">
+          <img src="../img/duki.jpg" width="250"><br>
+          <h2>Si Me Sobrara el Tiempo</h2><br>
+          <h3>Duki</h3>
+          <div class="music">
+            <audio id="audio1" controls onended="playNext()">
+              <source src="Duki - Si Me Sobrara el Tiempo.mp3" type="audio/mpeg">
+              Tu navegador no soporta el elemento de audio.
+            </audio>
+          </div>
+        </div>
+      </div>
+      
+      <div class="parte">
+        <br><br>
+        <div class="contenedor4">
+          <img src="../img/elvis.jpg" width="250"><br>
+          <h2>Can't Help Falling In Love</h2><br>
+          <h3>Elvis Presley</h3>
+          <div class="music">
+            <audio id="audio1" controls onended="playNext()">
+              <source src="Elvis Presley - Can't Help Falling In Love.mp3" type="audio/mpeg">
+              Tu navegador no soporta el elemento de audio.
+            </audio>
+          </div>
+        </div>
+      </div>
+      
+      <div class="parte">
+        <br><br>
+        <div class="contenedor4">
+          <img src="../img/enriqueI.jpg" width="250"><br>
+          <h2>Cuando Me Enamoro</h2><br>
+          <h3>Enrique Iglesias, Juan Luis Guerra 4.40</h3>
+          <div class="music">
+            <audio id="audio1" controls onended="playNext()">
+              <source src="Enrique Iglesias - Cuando Me Enamoro.mp3" type="audio/mpeg">
+              Tu navegador no soporta el elemento de audio.
+            </audio>
+          </div>
+        </div>
+      </div>
+      <div class="parte">
+        <br><br>
+        <div class="contenedor4">
+          <img src="../img/reik.jpg" width="250"><br>
+          <h2>Niña</h2><br>
+          <h3>Reik</h3>
+          <div class="music">
+            <audio id="audio1" controls onended="playNext()">
+              <source src="Reik - Niña.mp3" type="audio/mpeg">
+              Tu navegador no soporta el elemento de audio.
+            </audio>
+          </div>
+        </div>
+      </div>
+      <div class="parte">
+        <br><br>
+        <div class="contenedor4">
+          <img src="../img/zarcort.jpg" width="250"><br>
+          <h2>Vivo Por Ti</h2><br>
+          <h3>Zarcort, ¡TownGamePlay</h3>
+          <div class="music">
+            <audio id="audio1" controls onended="playNext()">
+              <source src="Zarcort - Vivo Por Ti.mp3" type="audio/mpeg">
+              Tu navegador no soporta el elemento de audio.
+            </audio>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <a href="#"><img src="../img/cinnamoroll-sanrio-characters.gif" width="160"></a>
+      <p><br><br><br>Para mi personita, que más especial, te amo <br><br><br></p>
+    </footer>
+
+    <script>
+      // Obtener todos los elementos de audio
+      const audios = document.querySelectorAll('audio');
+      let currentAudioIndex = 0;
+
+      function playNext() {
+        // Detener la canción actual
+        audios[currentAudioIndex].pause();
+
+        // Incrementar el índice para reproducir la próxima canción
+        currentAudioIndex++;
+
+        // Verificar si hay más canciones disponibles
+        if (currentAudioIndex < audios.length) {
+          // Reproducir la próxima canción
+          audios[currentAudioIndex].play();
+        } else {
+          // Si no hay más canciones, volver al inicio
+          currentAudioIndex = 0;
+          audios[currentAudioIndex].play();
+        }
+      }
+
+      // Agregar un evento 'play' a cada elemento de audio
+      audios.forEach(audio => {
+        audio.addEventListener('play', function() {
+          // Detener todos los elementos de audio excepto el que se está reproduciendo actualmente
+          audios.forEach(a => {
+            if (a !== this) {
+              a.pause();
+            }
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

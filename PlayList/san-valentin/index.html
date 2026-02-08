@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Music Player · Dynamic Lyrics</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="ambient-bg">
+  <div class="gradient-orb orb-1"></div>
+  <div class="gradient-orb orb-2"></div>
+  <div class="gradient-orb orb-3"></div>
+</div>
+
+<div class="container">
+  
+  <!-- Sidebar: Controles arriba + Canciones abajo -->
+  <aside class="sidebar">
+    
+    <!-- SECCIÓN 1: CONTROLES DEL REPRODUCTOR (ARRIBA) -->
+    <div class="player-controls-section">
+      <!-- Info de la canción actual -->
+      <div class="now-playing">
+        <div class="now-playing-label">Sherry</div>
+        <h3 id="currentTitle" class="now-playing-title">Dale play ❤️</h3>
+        <p id="currentArtist" class="now-playing-artist"></p>
+      </div>
+
+      <!-- Controles de reproducción -->
+      <div class="player-controls">
+        <button class="control-btn" id="prevBtn" aria-label="Previous">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M19 20L9 12L19 4V20Z M5 19V5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        
+        <button class="control-btn control-btn-main" id="playPauseBtn" aria-label="Play/Pause">
+          <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M8 5v14l11-7z"/>
+          </svg>
+          <svg class="pause-icon" viewBox="0 0 24 24" fill="currentColor" style="display: none;">
+            <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z"/>
+          </svg>
+        </button>
+        
+        <button class="control-btn" id="nextBtn" aria-label="Next">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 4L15 12L5 20V4Z M19 5V19" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Barra de progreso -->
+      <div class="progress-section">
+        <div class="progress-bar" id="progressBar">
+          <div class="progress-fill" id="progressFill"></div>
+          <div class="progress-handle" id="progressHandle"></div>
+        </div>
+        <div class="time-display">
+          <span id="currentTime">0:00</span>
+          <span id="duration">0:00</span>
+        </div>
+      </div>
+
+      <!-- Control de volumen -->
+      <div class="volume-control">
+        <svg class="volume-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M11 5L6 9H2v6h4l5 4V5z M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <input type="range" id="volumeSlider" min="0" max="100" value="80" class="volume-slider">
+      </div>
+    </div>
+
+    <!-- SECCIÓN 2: BIBLIOTECA DE CANCIONES (ABAJO) -->
+    <div class="library-section">
+      <div class="library-header">
+        <h2>Selecciona una pista</h2>
+        <div class="library-count"><span id="songCount">5</span> Pistas</div>
+      </div>
+      
+      <!-- Lista compacta de canciones -->
+      <div class="song-list" id="songList"></div>
+    </div>
+
+  </aside>
+
+  <!-- Área principal: Solo letras (pantalla completa) -->
+  <main class="lyrics-main">
+    <div class="lyrics-display">
+      <div class="lyrics-scroll" id="lyricsScroll">
+        <div id="lyrics" class="lyrics-content"></div>
+      </div>
+    </div>
+  </main>
+
+</div>
+
+<audio id="audio"></audio>
+
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feliz Cumpleaños Mi Amor</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 40%, #e9d5ff 100%);
+            background-size: 200% 200%;
+            animation: fondoSuave 20s ease infinite;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Georgia', serif;
+            overflow-x: hidden;
+            padding: 20px;
+            position: relative;
+        }
+
+        @keyframes fondoSuave {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        /* Estrellas brillantes sutiles */
+        .estrella {
+            position: fixed;
+            width: 3px;
+            height: 3px;
+            background: white;
+            border-radius: 50%;
+            box-shadow: 0 0 6px rgba(192, 132, 252, 0.8);
+            animation: parpadear 3s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes parpadear {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.5); }
+        }
+
+        /* Pétalos flotantes suaves */
+        .petalo {
+            position: fixed;
+            font-size: 20px;
+            opacity: 0;
+            animation: caerPetalo 15s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes caerPetalo {
+            0% {
+                opacity: 0;
+                transform: translateY(-50px) rotate(0deg);
+            }
+            10% {
+                opacity: 0.6;
+            }
+            90% {
+                opacity: 0.4;
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(100vh) rotate(360deg);
+            }
+        }
+
+        .container {
+            text-align: center;
+            max-width: 900px;
+            width: 100%;
+            animation: aparecer 1.2s ease-out;
+            position: relative;
+            z-index: 1;
+        }
+
+        @keyframes aparecer {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Título elegante con brillo */
+        .titulo-wrapper {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+
+        .titulo {
+            font-size: 64px;
+            background: linear-gradient(135deg, #9333ea, #c084fc, #9333ea);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: brilloSuave 5s ease infinite, aparecer 1s ease-out 0.3s backwards;
+            font-weight: 500;
+            letter-spacing: 4px;
+            filter: drop-shadow(0 2px 8px rgba(147, 51, 234, 0.2));
+            position: relative;
+        }
+
+        @keyframes brilloSuave {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .titulo-wrapper::before,
+        .titulo-wrapper::after {
+            content: '✨';
+            position: absolute;
+            font-size: 30px;
+            top: 50%;
+            transform: translateY(-50%);
+            animation: brillarEstrella 3s ease-in-out infinite;
+        }
+
+        .titulo-wrapper::before {
+            left: -60px;
+        }
+
+        .titulo-wrapper::after {
+            right: -60px;
+            animation-delay: 1.5s;
+        }
+
+        @keyframes brillarEstrella {
+            0%, 100% { 
+                opacity: 0.5;
+                transform: translateY(-50%) scale(1);
+            }
+            50% { 
+                opacity: 1;
+                transform: translateY(-50%) scale(1.2);
+            }
+        }
+
+        .subtitulo {
+            font-size: 28px;
+            color: #a855f7;
+            margin-bottom: 60px;
+            font-weight: 400;
+            opacity: 0;
+            animation: aparecer 1s ease-out 0.6s forwards;
+            text-shadow: 0 2px 8px rgba(168, 85, 247, 0.15);
+        }
+
+        /* Contenedor de flores elegante */
+        .jardin {
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            gap: 60px;
+            margin: 60px auto;
+            padding: 50px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.5), rgba(250, 245, 255, 0.6));
+            border-radius: 30px;
+            backdrop-filter: blur(12px);
+            border: 2px solid rgba(192, 132, 252, 0.3);
+            box-shadow: 0 20px 50px rgba(147, 51, 234, 0.15);
+            opacity: 0;
+            animation: aparecer 1s ease-out 0.9s forwards;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .jardin::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            animation: brilloMovil 6s linear infinite;
+        }
+
+        @keyframes brilloMovil {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .hortensia {
+            opacity: 0;
+            animation: crecerFlor 0.8s ease-out forwards;
+            position: relative;
+        }
+
+        .hortensia:nth-child(1) { animation-delay: 1.2s; }
+        .hortensia:nth-child(2) { animation-delay: 1.4s; }
+        .hortensia:nth-child(3) { animation-delay: 1.6s; }
+
+        @keyframes crecerFlor {
+            from {
+                opacity: 0;
+                transform: translateY(30px) scale(0.7);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .flores-img {
+            width: 180px;
+            height: 180px;
+            transition: all 0.4s ease;
+            animation: flotarFlor 4s ease-in-out infinite;
+        }
+
+        .flores-img:nth-child(1) { animation-delay: 0s; }
+        .flores-img:nth-child(2) { animation-delay: 1.3s; }
+        .flores-img:nth-child(3) { animation-delay: 2.6s; }
+
+        @keyframes flotarFlor {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .flores-img:hover {
+            transform: scale(1.1) translateY(-5px);
+        }
+
+        .flores-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            filter: drop-shadow(0 10px 25px rgba(147, 51, 234, 0.25));
+        }
+
+        /* Mensaje con diseño encantador */
+        .mensaje {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.6), rgba(250, 245, 255, 0.7));
+            backdrop-filter: blur(12px);
+            padding: 45px 50px;
+            border-radius: 25px;
+            margin: 60px auto;
+            max-width: 650px;
+            border: 2px solid rgba(192, 132, 252, 0.3);
+            box-shadow: 0 15px 40px rgba(147, 51, 234, 0.2);
+            opacity: 0;
+            animation: aparecer 1s ease-out 1.8s forwards;
+            position: relative;
+        }
+
+        .mensaje::after {
+            content: '💜';
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 35px;
+            animation: latirCorazon 1.5s ease-in-out infinite;
+        }
+
+        @keyframes latirCorazon {
+            0%, 100% { transform: translateX(-50%) scale(1); }
+            50% { transform: translateX(-50%) scale(1.15); }
+        }
+
+        .mensaje p {
+            font-size: 21px;
+            color: #7c3aed;
+            line-height: 1.9;
+            margin: 16px 0;
+            font-weight: 300;
+        }
+
+        .mensaje p:first-child {
+            font-size: 19px;
+            color: #a855f7;
+            margin-bottom: 25px;
+            font-style: italic;
+        }
+
+        .mensaje p:last-child {
+            font-size: 24px;
+            margin-top: 30px;
+            font-weight: 500;
+            background: linear-gradient(135deg, #9333ea, #c084fc);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Botón con estilo encantador */
+        .boton-sorpresa {
+            margin-top: 45px;
+            padding: 20px 50px;
+            font-size: 19px;
+            background: linear-gradient(135deg, #c084fc, #a855f7, #9333ea);
+            background-size: 200% 200%;
+            animation: gradienteBoton 3s ease infinite;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(147, 51, 234, 0.3);
+            transition: all 0.4s ease;
+            font-family: 'Georgia', serif;
+            font-weight: 400;
+            letter-spacing: 2px;
+            opacity: 0;
+            animation: aparecer 1s ease-out 2s forwards, gradienteBoton 3s ease infinite;
+            position: relative;
+            overflow: hidden;
+        }
+
+        @keyframes gradienteBoton {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .boton-sorpresa::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .boton-sorpresa:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .boton-sorpresa:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(147, 51, 234, 0.5);
+        }
+
+        .boton-sorpresa:active {
+            transform: translateY(-2px);
+        }
+
+        /* Modal hermoso */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, #faf5ff, #f3e8ff, #e9d5ff);
+            padding: 60px 55px;
+            border-radius: 30px;
+            text-align: center;
+            max-width: 550px;
+            width: 100%;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.4);
+            animation: modalEntrada 0.5s ease-out;
+            border: 3px solid rgba(192, 132, 252, 0.4);
+            position: relative;
+        }
+
+        @keyframes modalEntrada {
+            from {
+                opacity: 0;
+                transform: scale(0.9) translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        .modal-content::before {
+            content: '✨';
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 50px;
+            animation: girarBrillo 4s ease-in-out infinite;
+        }
+
+        @keyframes girarBrillo {
+            0%, 100% { transform: translateX(-50%) rotate(0deg); }
+            50% { transform: translateX(-50%) rotate(180deg); }
+        }
+
+        .modal-content h2 {
+            font-size: 48px;
+            background: linear-gradient(135deg, #9333ea, #c084fc);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 30px;
+            font-weight: 500;
+        }
+
+        .modal-content p {
+            font-size: 22px;
+            color: #7c3aed;
+            line-height: 1.9;
+            font-weight: 300;
+        }
+
+        .modal-content p strong {
+            font-weight: 500;
+            font-size: 24px;
+            background: linear-gradient(135deg, #9333ea, #c084fc);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .cerrar-modal {
+            margin-top: 40px;
+            padding: 16px 40px;
+            background: linear-gradient(135deg, #a855f7, #9333ea);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 17px;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(147, 51, 234, 0.3);
+            font-weight: 400;
+            letter-spacing: 1px;
+        }
+
+        .cerrar-modal:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 12px 30px rgba(147, 51, 234, 0.5);
+        }
+
+        /* Decoración de fondo elegante */
+        .decoracion {
+            position: fixed;
+            pointer-events: none;
+            z-index: 0;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+        }
+
+        .circulo {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(192, 132, 252, 0.15), transparent 70%);
+            animation: pulsarCirculo 8s ease-in-out infinite;
+        }
+
+        @keyframes pulsarCirculo {
+            0%, 100% { 
+                transform: scale(1);
+                opacity: 0.3;
+            }
+            50% { 
+                transform: scale(1.1);
+                opacity: 0.5;
+            }
+        }
+
+        .circulo1 {
+            width: 350px;
+            height: 350px;
+            top: 10%;
+            left: 5%;
+            animation-delay: 0s;
+        }
+
+        .circulo2 {
+            width: 250px;
+            height: 250px;
+            bottom: 15%;
+            right: 8%;
+            animation-delay: 2s;
+        }
+
+        .circulo3 {
+            width: 200px;
+            height: 200px;
+            top: 55%;
+            left: 8%;
+            animation-delay: 4s;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .titulo {
+                font-size: 48px;
+                letter-spacing: 2px;
+            }
+
+            .titulo-wrapper::before,
+            .titulo-wrapper::after {
+                font-size: 24px;
+            }
+
+            .titulo-wrapper::before {
+                left: -45px;
+            }
+
+            .titulo-wrapper::after {
+                right: -45px;
+            }
+
+            .subtitulo {
+                font-size: 22px;
+                margin-bottom: 40px;
+            }
+
+            .jardin {
+                gap: 40px;
+                padding: 35px 25px;
+                margin: 40px auto;
+                flex-wrap: wrap;
+            }
+
+            .flores-img {
+                width: 140px;
+                height: 140px;
+            }
+
+            .mensaje {
+                padding: 35px 30px;
+                margin: 40px auto;
+            }
+
+            .mensaje p {
+                font-size: 18px;
+            }
+
+            .mensaje p:first-child {
+                font-size: 17px;
+            }
+
+            .mensaje p:last-child {
+                font-size: 21px;
+            }
+
+            .boton-sorpresa {
+                padding: 18px 40px;
+                font-size: 17px;
+            }
+
+            .modal-content {
+                padding: 50px 35px;
+            }
+
+            .modal-content h2 {
+                font-size: 38px;
+            }
+
+            .modal-content p {
+                font-size: 19px;
+            }
+
+            .cerrar-modal {
+                font-size: 16px;
+            }
+
+            .circulo1 {
+                width: 250px;
+                height: 250px;
+            }
+
+            .circulo2 {
+                width: 180px;
+                height: 180px;
+            }
+
+            .circulo3 {
+                width: 150px;
+                height: 150px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .titulo {
+                font-size: 36px;
+                letter-spacing: 1px;
+            }
+
+            .titulo-wrapper::before,
+            .titulo-wrapper::after {
+                font-size: 20px;
+            }
+
+            .titulo-wrapper::before {
+                left: -35px;
+            }
+
+            .titulo-wrapper::after {
+                right: -35px;
+            }
+
+            .subtitulo {
+                font-size: 19px;
+            }
+
+            .jardin {
+                gap: 25px;
+                padding: 25px 20px;
+            }
+
+            .flores-img {
+                width: 110px;
+                height: 110px;
+            }
+
+            .mensaje {
+                padding: 30px 25px;
+            }
+
+            .mensaje p {
+                font-size: 17px;
+                line-height: 1.7;
+            }
+
+            .mensaje p:first-child {
+                font-size: 16px;
+            }
+
+            .mensaje p:last-child {
+                font-size: 19px;
+            }
+
+            .mensaje::after {
+                font-size: 28px;
+                top: -20px;
+            }
+
+            .boton-sorpresa {
+                padding: 16px 35px;
+                font-size: 16px;
+                letter-spacing: 1px;
+            }
+
+            .modal-content {
+                padding: 40px 25px;
+            }
+
+            .modal-content h2 {
+                font-size: 32px;
+            }
+
+            .modal-content p {
+                font-size: 17px;
+            }
+
+            .cerrar-modal {
+                padding: 14px 30px;
+                font-size: 15px;
+            }
+
+            .modal-content::before {
+                font-size: 40px;
+                top: -25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Decoración de fondo elegante -->
+    <div class="decoracion">
+        <div class="circulo circulo1"></div>
+        <div class="circulo circulo2"></div>
+        <div class="circulo circulo3"></div>
+    </div>
+
+    <!-- Estrellas brillantes -->
+    <div id="estrellas"></div>
+
+    <!-- Pétalos flotantes -->
+    <div id="petalos"></div>
+
+    <div class="container">
+        <div class="titulo-wrapper">
+            <h1 class="titulo">Feliz Cumpleaños</h1>
+        </div>
+        <p class="subtitulo">Mi Cielito Lindo 💜</p>
+
+        <!-- Jardín de hortensias -->
+        <div class="jardin">
+            <div class="hortensia">
+                <div class="flores-img">
+                    <img src="flor.png" alt="Hortensia" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22200%22%3E%3Ccircle cx=%22100%22 cy=%22100%22 r=%2280%22 fill=%22%23c084fc%22 opacity=%220.6%22/%3E%3Ccircle cx=%22100%22 cy=%2265%22 r=%2218%22 fill=%22%23a855f7%22 opacity=%220.8%22/%3E%3Ccircle cx=%22130%22 cy=%2295%22 r=%2218%22 fill=%22%23d8b4fe%22 opacity=%220.8%22/%3E%3Ccircle cx=%22100%22 cy=%22135%22 r=%2218%22 fill=%22%239333ea%22 opacity=%220.8%22/%3E%3Ccircle cx=%2270%22 cy=%2295%22 r=%2218%22 fill=%22%23c084fc%22 opacity=%220.8%22/%3E%3Ccircle cx=%22115%22 cy=%22115%22 r=%2215%22 fill=%22%23e9d5ff%22 opacity=%220.9%22/%3E%3Ccircle cx=%2285%22 cy=%22115%22 r=%2215%22 fill=%22%23e9d5ff%22 opacity=%220.9%22/%3E%3C/svg%3E'">
+                </div>
+            </div>
+
+            <div class="hortensia">
+                <div class="flores-img">
+                    <img src="flor.png" alt="Hortensia" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22200%22%3E%3Ccircle cx=%22100%22 cy=%22100%22 r=%2280%22 fill=%22%23c084fc%22 opacity=%220.6%22/%3E%3Ccircle cx=%22100%22 cy=%2265%22 r=%2218%22 fill=%22%23a855f7%22 opacity=%220.8%22/%3E%3Ccircle cx=%22130%22 cy=%2295%22 r=%2218%22 fill=%22%23d8b4fe%22 opacity=%220.8%22/%3E%3Ccircle cx=%22100%22 cy=%22135%22 r=%2218%22 fill=%22%239333ea%22 opacity=%220.8%22/%3E%3Ccircle cx=%2270%22 cy=%2295%22 r=%2218%22 fill=%22%23c084fc%22 opacity=%220.8%22/%3E%3Ccircle cx=%22115%22 cy=%22115%22 r=%2215%22 fill=%22%23e9d5ff%22 opacity=%220.9%22/%3E%3Ccircle cx=%2285%22 cy=%22115%22 r=%2215%22 fill=%22%23e9d5ff%22 opacity=%220.9%22/%3E%3C/svg%3E'">
+                </div>
+            </div>
+
+            <div class="hortensia">
+                <div class="flores-img">
+                    <img src="flor.png" alt="Hortensia" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22200%22%3E%3Ccircle cx=%22100%22 cy=%22100%22 r=%2280%22 fill=%22%23c084fc%22 opacity=%220.6%22/%3E%3Ccircle cx=%22100%22 cy=%2265%22 r=%2218%22 fill=%22%23a855f7%22 opacity=%220.8%22/%3E%3Ccircle cx=%22130%22 cy=%2295%22 r=%2218%22 fill=%22%23d8b4fe%22 opacity=%220.8%22/%3E%3Ccircle cx=%22100%22 cy=%22135%22 r=%2218%22 fill=%22%239333ea%22 opacity=%220.8%22/%3E%3Ccircle cx=%2270%22 cy=%2295%22 r=%2218%22 fill=%22%23c084fc%22 opacity=%220.8%22/%3E%3Ccircle cx=%22115%22 cy=%22115%22 r=%2215%22 fill=%22%23e9d5ff%22 opacity=%220.9%22/%3E%3Ccircle cx=%2285%22 cy=%22115%22 r=%2215%22 fill=%22%23e9d5ff%22 opacity=%220.9%22/%3E%3C/svg%3E'">
+                </div>
+            </div>
+        </div>
+
+        <!-- Mensaje especial -->
+        <div class="mensaje">
+            <p>En tu día especial quiero que sepas...</p>
+            <p>Que eres la persona más increíble que conozco</p>
+            <p>Que cada día a tu lado es un regalo</p>
+            <p>Y que te amo más de lo que las palabras pueden expresar</p>
+            <p>Feliz cumpleaños, mi amor 💜</p>
+        </div>
+
+        <button class="boton-sorpresa" onclick="mostrarSorpresa()">
+            Un mensaje para ti 🌸
+        </button>
+    </div>
+
+    <!-- Modal de sorpresa -->
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <h2>✨ Para ti ✨</h2>
+            <p>Eres la luz de mi vida,<br>mi razón de sonreír cada día.<br><br>
+            Te amo hoy, mañana y siempre 💜<br><br>
+            <strong>Eres mi todo</strong></p>
+            <button class="cerrar-modal" onclick="cerrarModal()">Gracias mi amor 💕</button>
+        </div>
+    </div>
+
+    <script>
+        // Generar estrellas brillantes
+        const estrellasContainer = document.getElementById('estrellas');
+        for (let i = 0; i < 25; i++) {
+            const estrella = document.createElement('div');
+            estrella.className = 'estrella';
+            estrella.style.left = Math.random() * 100 + '%';
+            estrella.style.top = Math.random() * 100 + '%';
+            estrella.style.animationDelay = Math.random() * 3 + 's';
+            estrellasContainer.appendChild(estrella);
+        }
+
+        // Generar pétalos flotantes
+        const petalosContainer = document.getElementById('petalos');
+        const petalos = ['🌸', '💜', '🦋', '✨'];
+        
+        for (let i = 0; i < 12; i++) {
+            const petalo = document.createElement('div');
+            petalo.className = 'petalo';
+            petalo.textContent = petalos[Math.floor(Math.random() * petalos.length)];
+            petalo.style.left = Math.random() * 100 + '%';
+            petalo.style.animationDelay = Math.random() * 15 + 's';
+            petalo.style.animationDuration = (Math.random() * 5 + 12) + 's';
+            petalosContainer.appendChild(petalo);
+        }
+
+        // Funciones del modal
+        function mostrarSorpresa() {
+            document.getElementById('modal').style.display = 'flex';
+        }
+
+        function cerrarModal() {
+            document.getElementById('modal').style.display = 'none';
+        }
+
+        // Cerrar modal al hacer clic fuera
+        document.getElementById('modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                cerrarModal();
+            }
+        });
+    </script>
+</body>
+</html>

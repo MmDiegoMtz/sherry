@@ -1,0 +1,429 @@
+* {
+    /*Parametros generales*/
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+/* Fuentes personalizadas */
+@font-face {
+    font-family: 'titulos';
+    src: url('../Fuentes/Love\ Twist.ttf') format('opentype');
+}
+
+@font-face {
+    font-family: 'texto';
+    src: url('../Fuentes/WatermelonSugar.ttf') format('opentype');
+}
+
+/* Body mejorado con gradiente suave */
+body {
+    background: linear-gradient(135deg, #FFD1DC 0%, #FFE5EC 50%, #FFF0F5 100%);
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Efecto sutil de corazones de fondo */
+body::before {
+    content: "💕";
+    position: fixed;
+    top: -50px;
+    left: 15%;
+    font-size: 35px;
+    opacity: 0.05;
+    animation: float 18s infinite ease-in-out;
+    z-index: 0;
+}
+
+body::after {
+    content: "💖";
+    position: fixed;
+    top: 60%;
+    right: 12%;
+    font-size: 45px;
+    opacity: 0.05;
+    animation: float 22s infinite ease-in-out 6s;
+    z-index: 0;
+}
+
+@keyframes float {
+    0%, 100% { 
+        transform: translateY(0) rotate(0deg); 
+    }
+    50% { 
+        transform: translateY(-40px) rotate(15deg); 
+    }
+}
+
+/* Header mejorado */
+h1 {
+    text-align: center;
+    background: linear-gradient(135deg, #FFD1DC 0%, #FFB3C6 50%, #FFD1DC 100%);
+    font-family: "titulos";
+    font-size: 60px;
+    color: #FF4081;
+    text-shadow: 2px 2px 4px rgba(255, 64, 129, 0.2);
+    font-weight: bold;
+    padding: 30px;
+    position: relative;
+    border-bottom: 3px solid #FF85AB;
+    z-index: 10;
+}
+
+/* Navegación mejorada */
+nav ul {
+    background: linear-gradient(90deg, #FF4081 0%, #FF6B9D 50%, #FF4081 100%);
+    width: 100%;
+    list-style-type: none;
+    text-align: center;
+    box-shadow: 0 3px 10px rgba(255, 64, 129, 0.2);
+    position: relative;
+    z-index: 10;
+}
+
+nav li {
+    display: inline-flex;
+    transition: all 0.3s ease;
+}
+
+nav a {
+    text-decoration: none;
+    padding: 10px;
+    width: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+nav a img {
+    transition: all 0.3s ease;
+}
+
+nav li:hover {
+    background: linear-gradient(135deg, #FFD1DC 0%, #FFE5EC 100%);
+    transform: translateY(-3px);
+}
+
+nav li:hover a img {
+    transform: scale(1.15);
+}
+
+/* Párrafos - MÁS LEGIBLES */
+p {
+    font-family: "texto";
+    font-size: 20px;
+    color: #333333; /* Color más oscuro para mejor legibilidad */
+    line-height: 1.8;
+}
+
+a {
+    text-decoration: none;
+}
+
+/* Sección uno */
+.uno {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.uno a {
+    text-align: center;
+}
+
+.uno img {
+    display: block;
+    margin: 0 auto;
+    transition: transform 0.3s ease;
+}
+
+.uno img:hover {
+    transform: scale(1.05);
+}
+
+.uno p {
+    margin: 0;
+}
+
+/* Container principal */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.letter {
+    max-width: 80%;
+    background: #FFFFFF;
+    padding: 50px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(255, 64, 129, 0.15);
+    transition: all 0.3s ease;
+}
+
+.letter:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(255, 64, 129, 0.2);
+}
+
+/* Imágenes - SIN EFECTOS EXCESIVOS */
+.image {
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 25px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.image:hover {
+    transform: scale(1.02);
+}
+
+/* Texto de la carta - LIMPIO Y LEGIBLE */
+.text {
+    text-align: justify;
+    margin-bottom: 25px;
+    padding: 0; /* Sin padding extra */
+    background: transparent; /* Sin fondo */
+    border: none; /* Sin bordes */
+    color: #333333; /* Color oscuro para legibilidad */
+    line-height: 1.9;
+}
+
+/* Cierre de la carta */
+.closing {
+    font-style: italic;
+    text-align: right;
+    font-size: 22px;
+    color: #FF4081;
+    margin-top: 30px;
+    padding: 10px;
+}
+
+/* Contenedor de imágenes */
+.contenedor {
+    display: flex;
+    justify-content: center;
+    margin: 25px 0;
+}
+
+.contenedor img {
+    max-width: 30%;
+    height: auto;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+}
+
+.contenedor img:hover {
+    transform: scale(1.08);
+}
+
+/* Grid de cartas mejorado */
+.contenedor3 {
+    margin: 20px;
+    padding: 30px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 30px;
+    position: relative;
+    z-index: 1;
+}
+
+/* Tarjetas de carta - MÁS LIMPIAS */
+.parte {
+    background: #FFFFFF;
+    font-family: 'Arial', sans-serif;
+    padding: 35px;
+    text-align: center;
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(255, 64, 129, 0.15);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+/* Efecto suave de brillo - MÁS SUTIL */
+.parte::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        45deg,
+        transparent,
+        rgba(255, 255, 255, 0.1),
+        transparent
+    );
+    transform: rotate(45deg);
+    transition: all 0.6s ease;
+    pointer-events: none;
+}
+
+.parte:hover::before {
+    animation: shine 2s;
+}
+
+@keyframes shine {
+    0% { 
+        transform: translateX(-100%) translateY(-100%) rotate(45deg); 
+    }
+    100% { 
+        transform: translateX(100%) translateY(100%) rotate(45deg); 
+    }
+}
+
+.parte:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 35px rgba(255, 64, 129, 0.2);
+}
+
+.parte > p:first-child {
+    font-size: 24px;
+    color: #FF4081;
+    font-weight: bold;
+    margin-bottom: 15px;
+    padding: 10px;
+    background: linear-gradient(135deg, #FFD1DC 0%, #FFE5EC 100%);
+    border-radius: 8px;
+}
+
+/* Media queries responsivo */
+@media screen and (max-width:992px) {
+    .contenedor3 {
+        margin: 15px;
+        padding: 20px;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-gap: 25px;
+    }
+    
+    h1 {
+        font-size: 40px;
+        padding: 25px;
+    }
+
+    .parte {
+        padding: 25px;
+        margin-bottom: 5px;
+    }
+
+    .letter {
+        max-width: 90%;
+        padding: 35px;
+    }
+
+    .contenedor img {
+        max-width: 40%;
+    }
+}
+
+@media screen and (max-width:768px) {
+    h1 {
+        font-size: 35px;
+        padding: 20px;
+    }
+
+    .contenedor3 {
+        margin: 10px;
+        padding: 15px;
+        grid-gap: 20px;
+    }
+
+    .parte {
+        padding: 20px;
+    }
+
+    p {
+        font-size: 18px;
+    }
+
+    .text {
+        font-size: 18px;
+    }
+
+    .contenedor img {
+        max-width: 50%;
+    }
+
+    nav a img {
+        width: 50px;
+    }
+}
+
+@media screen and (max-width:468px) {
+    h1 {
+        font-size: 28px;
+        padding: 15px;
+    }
+
+    .contenedor3 {
+        margin: 5px;
+        padding: 10px;
+        grid-gap: 15px;
+    }
+
+    .parte {
+        padding: 18px;
+    }
+
+    .parte > p:first-child {
+        font-size: 20px;
+    }
+
+    p {
+        font-size: 16px;
+    }
+
+    .text {
+        font-size: 16px;
+    }
+
+    .closing {
+        font-size: 18px;
+        padding: 10px;
+    }
+
+    .letter {
+        max-width: 95%;
+        padding: 25px;
+    }
+
+    .contenedor img {
+        max-width: 60%;
+    }
+
+    nav a img {
+        width: 45px;
+    }
+}
+
+/* Animación de entrada suave */
+.parte {
+    animation: fadeInUp 0.5s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.parte:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.parte:nth-child(2) {
+    animation-delay: 0.2s;
+}
