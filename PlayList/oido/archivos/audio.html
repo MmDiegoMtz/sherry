@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Reproductor de Música</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <div class="player-container">
+    
+    <!-- Imagen de portada -->
+    <div class="cover">
+      <img id="cover-image" src="" alt="Portada" width="350" height="320" style="background:black; object-fit: cover;" />
+    </div>
+
+    <div class="track-info">
+      <h2 id="track-title">Cargando...</h2>
+    </div>
+
+    <audio id="audio" preload="metadata"></audio>
+
+    <div class="controls">
+      <button onclick="prevTrack()">⏮</button>
+      <button id="play-btn" onclick="togglePlay()">▶</button>
+      <button onclick="nextTrack()">⏭</button>
+    </div>
+
+    <div class="progress-container">
+      <span id="current-time">0:00</span>
+      <input type="range" id="progress" value="0" max="100"/>
+      <span id="duration">0:00</span>
+    </div>
+
+    <div class="Cargando">
+      <a href="../Oido.html">
+        <ul class="wave-menu">
+          <li></li><li></li><li></li><li></li><li></li>
+          <li></li><li></li><li></li><li></li><li></li>
+        </ul>
+      </a>
+    </div>
+
+    <div class="playlist">
+      <ul id="playlist"></ul>
+    </div>
+  </div>
+
+  <script src="scriptDos.js"></script>
+</body>
+</html>

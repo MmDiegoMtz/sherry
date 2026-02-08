@@ -1,0 +1,277 @@
+body {
+  margin: 0;
+  background-color: #0d0d1A; /* FONDO */
+  color: #fff; /* LETRAS */
+  font-family: 'Segoe UI', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.player-container {
+  width: 350px;
+  background: #2b2b3c; /* MARCO */
+  padding: 20px;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+}
+
+.cover {
+  width: 100%;
+  height: 320px;
+  background: #444;
+  border-radius: 15px;
+  margin-bottom: 15px;
+  position: relative;
+  overflow: hidden;
+}
+
+.cover canvas {
+  width: 100%;
+  height: 100%;
+  display: none; /* Oculto por defecto */
+}
+
+.cover img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  object-fit: cover;
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3);
+  animation: zoomLoop 12s ease-in-out infinite;
+  filter: contrast(1.05) saturate(1.2) brightness(1.05);
+  transition: filter 0.3s ease, transform 0.3s ease;
+}
+
+.cover img:hover {
+  filter: contrast(1.1) saturate(1.4) brightness(1.1);
+  transform: scale(1.02);
+}
+
+@keyframes zoomLoop {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.track-info h2 {
+  font-size: 17px;
+  margin-bottom: 10px;
+}
+
+.controls button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 25px;
+  margin: 0 10px;
+  cursor: pointer;
+}
+
+.progress-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin: 15px 0;
+}
+
+#progress {
+  flex: 1;
+  height: 5px;
+}
+
+.playlist ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  margin-top: 15px;
+  max-height: 35px;
+  overflow-y: auto;
+}
+
+.playlist li {
+  padding: 6px 10px;
+  cursor: pointer;
+  border-radius: 8px;
+}
+
+.playlist li:hover,
+.playlist li.active {
+  background-color: #444; /** FONDO HOVER TITULO LETRA */
+}
+
+/* Barra de desplazamiento */
+.playlist ul::-webkit-scrollbar {
+  width: 6px;
+}
+
+.playlist ul::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.playlist ul::-webkit-scrollbar-thumb {
+  background-color: #888; /* COLOR */
+  border-radius: 6px;
+}
+
+.playlist ul::-webkit-scrollbar-thumb:hover {
+  background-color: #aaa;
+}
+
+/* ----------------------------- */
+/*         RESPONSIVE           */
+/* ----------------------------- */
+
+/* Responsivo para wave-menu */
+@media (max-width: 480px) {
+  .wave-menu {
+    width: 180px;
+    height: 40px;
+  }
+
+  .wave-menu li {
+    height: 25px;
+    width: 3px;
+    margin: 0 5px;
+  }
+}
+
+@media (max-width: 360px) {
+  .wave-menu {
+    width: 160px;
+    height: 38px;
+  }
+
+  .wave-menu li {
+    height: 22px;
+    margin: 0 4px;
+  }
+}
+
+/* Movimiento - From Uiverse.io by JkHuger */
+.wave-menu {
+  border: 4px solid #545FE5;
+  border-radius: 50px;
+  width: 200px;
+  height: 45px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  transition: ease 0.2s;
+  position: relative;
+  background: #fff;
+}
+
+.wave-menu li {
+  list-style: none;
+  height: 30px;
+  width: 4px;
+  border-radius: 10px;
+  background: #545FE5;
+  margin: 0 6px;
+  padding: 0;
+  animation-name: wave1;
+  animation-duration: 0.3s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  transition: ease 0.2s;
+}
+
+.wave-menu:hover > li {
+  background: #fff;
+}
+
+.wave-menu:hover {
+  background: #545FE5;
+}
+
+.wave-menu li:nth-child(2) {
+  animation-name: wave2;
+  animation-delay: 0.2s;
+}
+
+.wave-menu li:nth-child(3) {
+  animation-name: wave3;
+  animation-delay: 0.23s;
+  animation-duration: 0.4s;
+}
+
+.wave-menu li:nth-child(4) {
+  animation-name: wave4;
+  animation-delay: 0.1s;
+  animation-duration: 0.3s;
+}
+
+.wave-menu li:nth-child(5) {
+  animation-delay: 0.5s;
+}
+
+.wave-menu li:nth-child(6) {
+  animation-name: wave2;
+  animation-duration: 0.5s;
+}
+
+.wave-menu li:nth-child(8) {
+  animation-name: wave4;
+  animation-delay: 0.4s;
+  animation-duration: 0.25s;
+}
+
+.wave-menu li:nth-child(9) {
+  animation-name: wave3;
+  animation-delay: 0.15s;
+}
+
+@keyframes wave1 {
+  from {
+    transform: scaleY(1);
+  }
+  to {
+    transform: scaleY(0.5);
+  }
+}
+
+@keyframes wave2 {
+  from {
+    transform: scaleY(0.3);
+  }
+  to {
+    transform: scaleY(0.6);
+  }
+}
+
+@keyframes wave3 {
+  from {
+    transform: scaleY(0.6);
+  }
+  to {
+    transform: scaleY(0.8);
+  }
+}
+
+@keyframes wave4 {
+  from {
+    transform: scaleY(0.2);
+  }
+  to {
+    transform: scaleY(0.5);
+  }
+}
+
+.Cargando {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

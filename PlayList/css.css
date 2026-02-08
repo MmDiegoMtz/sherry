@@ -1,0 +1,424 @@
+* {
+    /*Parametros generales*/
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+/* Fuentes personalizadas */
+@font-face {
+    font-family: 'titulos';
+    src: url('../Fuentes/Love\ Twist.ttf') format('opentype');
+}
+
+@font-face {
+    font-family: 'texto';
+    src: url('../Fuentes/WatermelonSugar.ttf') format('opentype');
+}
+
+/* Body mejorado con gradiente suave */
+body {
+    background: linear-gradient(135deg, #FFD1DC 0%, #FFE5EC 50%, #FFF0F5 100%);
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Efecto sutil de notas musicales de fondo */
+body::before {
+    content: "🎵";
+    position: fixed;
+    top: 10%;
+    left: 10%;
+    font-size: 40px;
+    opacity: 0.04;
+    animation: float 20s infinite ease-in-out;
+    z-index: 0;
+}
+
+body::after {
+    content: "🎶";
+    position: fixed;
+    top: 70%;
+    right: 15%;
+    font-size: 50px;
+    opacity: 0.04;
+    animation: float 25s infinite ease-in-out 7s;
+    z-index: 0;
+}
+
+@keyframes float {
+    0%, 100% { 
+        transform: translateY(0) rotate(0deg); 
+    }
+    50% { 
+        transform: translateY(-30px) rotate(10deg); 
+    }
+}
+
+/* Header mejorado */
+h1 {
+    text-align: center;
+    background: linear-gradient(135deg, #FFD1DC 0%, #FFB3C6 50%, #FFD1DC 100%);
+    font-family: "titulos", cursive, sans-serif;
+    font-size: 60px;
+    color: #FF4081;
+    text-shadow: 2px 2px 4px rgba(255, 64, 129, 0.2);
+    font-weight: bold;
+    padding: 30px;
+    border-bottom: 3px solid #FF85AB;
+    position: relative;
+    z-index: 10;
+}
+
+/* Títulos de canciones y artistas */
+h2, h3 {
+    text-align: center;
+    font-family: "texto";
+    color: #FF4081;
+    font-weight: bold;
+    padding: 8px;
+    margin: 5px 0;
+}
+
+
+
+h3 {
+    font-size: 20px;
+    color: #FF6B9D;
+}
+
+/* Footer mejorado */
+footer {
+    display: flex;
+    width: 100%;
+    min-height: 250px;
+    background: linear-gradient(135deg, #FFD1DC 0%, #FFB3C6 50%, #FFD1DC 100%);
+    color: #FF4081;
+    font-family: 'Arial', sans-serif;
+    font-size: 15px;
+    padding: 20px;
+    margin-top: 40px;
+    justify-content: center;
+    align-items: center;
+    border-top: 5px solid #FF85AB;
+    box-shadow: 0 -5px 20px rgba(255, 64, 129, 0.15);
+    position: relative;
+}
+
+footer img {
+    transition: transform 0.3s ease;
+}
+
+footer img:hover {
+    transform: scale(1.1) rotate(5deg);
+}
+
+/* Navegación mejorada */
+nav ul {
+    background: linear-gradient(90deg, #FF4081 0%, #FF6B9D 50%, #FF4081 100%);
+    width: 100%;
+    list-style-type: none;
+    text-align: center;
+    box-shadow: 0 3px 10px rgba(255, 64, 129, 0.2);
+    position: relative;
+    z-index: 10;
+}
+
+nav li {
+    display: inline-flex;
+    transition: all 0.3s ease;
+}
+
+nav a {
+    text-decoration: none;
+    padding: 10px;
+    width: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+nav a img {
+    transition: all 0.3s ease;
+}
+
+nav li:hover {
+    background: linear-gradient(135deg, #FFD1DC 0%, #FFE5EC 100%);
+    transform: translateY(-3px);
+}
+
+nav li:hover a img {
+    transform: scale(1.15);
+}
+
+/* Grid de canciones mejorado */
+.contenedor3 {
+    margin: 30px auto;
+    padding: 20px;
+    display: grid;
+    max-width: 1300px;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 25px;
+    position: relative;
+    z-index: 1;
+}
+
+/* Tarjetas de canciones - LIMPIAS Y ELEGANTES */
+.parte {
+    background: linear-gradient(135deg, #FFFFFF 0%, #FFF5F7 100%);
+    font-family: 'Arial', sans-serif;
+    font-weight: bold;
+    padding: 30px;
+    text-align: center;
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(255, 64, 129, 0.15);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    min-height: 550px;
+}
+
+/* Efecto suave de brillo */
+.parte::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        45deg,
+        transparent,
+        rgba(255, 255, 255, 0.1),
+        transparent
+    );
+    transform: rotate(45deg);
+    transition: all 0.6s ease;
+    pointer-events: none;
+}
+
+.parte:hover::before {
+    animation: shine 2s;
+}
+
+@keyframes shine {
+    0% { 
+        transform: translateX(-100%) translateY(-100%) rotate(45deg); 
+    }
+    100% { 
+        transform: translateX(100%) translateY(100%) rotate(45deg); 
+    }
+}
+
+.parte:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 15px 35px rgba(255, 64, 129, 0.25);
+}
+
+.parte * {
+    max-width: 100%;
+    position: relative;
+    z-index: 1;
+}
+
+/* Imágenes de portada */
+.contenedor4 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.contenedor4 img {
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(255, 64, 129, 0.2);
+    transition: all 0.3s ease;
+    margin-bottom: 15px;
+}
+
+.contenedor4 img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 25px rgba(255, 64, 129, 0.3);
+}
+
+/* Párrafos */
+p {
+    color: #FF4081;
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    font-size: 18px;
+    line-height: 1.8;
+    text-align: justify;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+/* Reproductor de música mejorado */
+.music {
+    background: linear-gradient(135deg, #FEE7E6 0%, #FEE7E6 100%);
+    border-radius: 20px;
+    padding: 15px;
+    width: 100%;
+    max-width: 350px;
+   
+    margin: 15px auto 0;
+    transition: all 0.3s ease;
+}
+
+.music:hover {
+    box-shadow: 0 8px 20px rgba(255, 64, 129, 0.2);
+    transform: translateY(-2px);
+}
+
+.music audio {
+    width: 100%;
+    outline: none;
+}
+
+
+.music audio::-webkit-media-controls-panel {
+    background-color: #FEE7E6;
+    border-radius: 10px;
+}
+
+.music audio::-webkit-media-controls-play-button,
+.music audio::-webkit-media-controls-pause-button {
+    color: #FF4081;
+}
+
+/* Responsive mejorado */
+@media screen and (max-width:992px) {
+    .contenedor {
+        width: auto;
+    }
+
+    .contenedor3 {
+        max-width: 500px;
+        grid-template-columns: 1fr;
+        grid-gap: 20px;
+        padding: 20px;
+        margin: 20px auto;
+    }
+
+    .parte {
+        min-height: 500px;
+        padding: 25px;
+    }
+
+    h1 {
+        font-size: 40px;
+        padding: 25px;
+    }
+
+    h2 {
+        font-size: 22px;
+    }
+
+    h3 {
+        font-size: 18px;
+    }
+
+    .music {
+        max-width: 320px;
+    }
+}
+
+@media screen and (max-width:768px) {
+    .contenedor3 {
+        max-width: 90%;
+        padding: 15px;
+        margin: 15px auto;
+    }
+
+    .parte {
+        min-height: 480px;
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 35px;
+        padding: 20px;
+    }
+
+    .contenedor4 img {
+        max-width: 220px;
+    }
+
+    nav a img {
+        width: 50px;
+    }
+}
+
+@media screen and (max-width:468px) {
+    .contenedor3 {
+        max-width: 95%;
+        padding: 10px;
+        margin: 10px auto;
+        grid-gap: 15px;
+    }
+
+    .parte {
+        min-height: 450px;
+        padding: 18px;
+    }
+
+    h1 {
+        font-size: 28px;
+        padding: 15px;
+    }
+
+    h2 {
+        font-size: 18px;
+    }
+
+    h3 {
+        font-size: 16px;
+    }
+
+    .contenedor4 img {
+        max-width: 200px;
+    }
+
+    .music {
+        max-width: 280px;
+        padding: 12px;
+    }
+
+    p {
+        font-size: 16px;
+    }
+
+    nav a img {
+        width: 45px;
+    }
+}
+
+/* Animación de entrada suave */
+.parte {
+    animation: fadeInUp 0.5s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Diferentes delays para cada tarjeta */
+.parte:nth-child(1) { animation-delay: 0.1s; }
+.parte:nth-child(2) { animation-delay: 0.15s; }
+.parte:nth-child(3) { animation-delay: 0.2s; }
+.parte:nth-child(4) { animation-delay: 0.25s; }
+.parte:nth-child(5) { animation-delay: 0.3s; }
+.parte:nth-child(6) { animation-delay: 0.35s; }
+.parte:nth-child(7) { animation-delay: 0.4s; }
+.parte:nth-child(8) { animation-delay: 0.45s; }

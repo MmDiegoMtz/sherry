@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Reproductor de Música</title>
+  <link rel="stylesheet" href="archivos/style.css"/>
+</head>
+<body>
+  <div class="player-container">
+    <div class="cover">
+      <canvas id="heartCanvas" width="350" height="320" style="background:black;"></canvas>
+      <canvas id="loveLettersCanvas" width="350" height="320" style="background:black;"></canvas>
+      <canvas id="starCanvas" width="350" height="350" style="background:black; display: none;"></canvas>
+      <canvas id="flowerCanvas" width="350" height="320" style="background:black; display:none;"></canvas>
+      <canvas id="constellationCanvas" width="350" height="320" style="background:black; display:none;"></canvas>
+    </div>
+
+    <div class="track-info">
+      <h2 id="track-title">Cargando...</h2>
+    </div>
+
+    <audio id="audio" preload="metadata"></audio>
+
+    <div class="controls">
+      <button onclick="prevTrack()">⏮</button>
+      <button id="play-btn" onclick="togglePlay()">▶</button>
+      <button onclick="nextTrack()">⏭</button>
+    </div>
+
+    <div class="progress-container">
+      <span id="current-time">0:00</span>
+      <input type="range" id="progress" value="0" max="100"/>
+      <span id="duration">0:00</span>
+    </div>
+
+    <div class="Cargando">
+      <a href="archivos/audio.html">
+        <ul class="wave-menu">
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
+      </a>
+    </div>
+
+    <div class="playlist">
+      <ul id="playlist"></ul>
+    </div>
+  </div>
+  
+  <script src="archivos/script.js"></script>
+</body>
+</html>
